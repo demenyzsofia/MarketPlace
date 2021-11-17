@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Market Place</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Log in</string>
+    <string name="signup">Sign Up</string>
+    <string name="forgotpassword">Forgot password?</string>
+    <string name="click">Click here</string>
+    <string name="newtobazar">New to Bazaar?</string>
+    <string name="name">Username</string>
+    <string name="password">Password</string>
+</resources>
