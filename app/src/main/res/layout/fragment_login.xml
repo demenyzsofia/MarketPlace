@@ -9,8 +9,8 @@
     tools:context=".fragments.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="374dp"
-        android:layout_height="556dp"
+        android:layout_width="364dp"
+        android:layout_height="553dp"
         android:background="@drawable/lightgrey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

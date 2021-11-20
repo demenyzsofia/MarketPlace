@@ -24,6 +24,7 @@ class LoginFragment : Fragment() {
     private lateinit  var name_edittext : EditText
     private lateinit  var password_edittext : EditText
     private lateinit  var login_button : Button
+    private lateinit var signup_button : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +51,7 @@ class LoginFragment : Fragment() {
         name_edittext = view.findViewById(R.id.edittext_login_name)
         password_edittext = view.findViewById(R.id.edittext_login_password)
         login_button = view.findViewById(R.id.button_login)
+        signup_button =  view.findViewById(R.id.button_signup)
 
     }
 
@@ -71,6 +73,10 @@ class LoginFragment : Fragment() {
         loginViewModel.token.observe(viewLifecycleOwner){
             Log.d("xxx", "navigate to list")
             findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+        }
+
+        signup_button.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
     }
 
