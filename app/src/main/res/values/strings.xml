@@ -10,8 +10,9 @@
     <string name="name">Username</string>
     <string name="password">Password</string>
     <string name="register">Register</string>
-    <string name="fullname">Full name</string>
-    <string name="lname">Last name</string>
     <string name="account">Already have an account?</string>
     <string name="email">name@email.com</string>
+    <string name="phone">+40799999999</string>
+    <string name="forgottext">We will send you an email with instructions on how to reset your password.</string>
+    <string name="emailme">Email me</string>
 </resources>

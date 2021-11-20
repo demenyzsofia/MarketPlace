@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -25,6 +26,8 @@ class LoginFragment : Fragment() {
     private lateinit  var password_edittext : EditText
     private lateinit  var login_button : Button
     private lateinit var signup_button : Button
+    private lateinit var clickhere_textview : TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +55,7 @@ class LoginFragment : Fragment() {
         password_edittext = view.findViewById(R.id.edittext_login_password)
         login_button = view.findViewById(R.id.button_login)
         signup_button =  view.findViewById(R.id.button_signup)
+        clickhere_textview = view.findViewById(R.id.textView_clickhere)
 
     }
 
@@ -77,6 +81,10 @@ class LoginFragment : Fragment() {
 
         signup_button.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+        clickhere_textview.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
     }
 
