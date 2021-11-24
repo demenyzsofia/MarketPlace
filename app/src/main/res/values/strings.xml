@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Market Place</string>
+    <string name="app_name">Bazaar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">Log in</string>
@@ -16,4 +16,7 @@
     <string name="forgottext">We will send you an email with instructions on how to reset your password.</string>
     <string name="emailme">Email me</string>
     <string name="order">Order now</string>
+    <string name="timeline">Timeline</string>
+    <string name="my_market">My Market</string>
+    <string name="my_fares">My fares</string>
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/timeline"
+            android:icon="@drawable/tree_icon"
+            android:title="@string/timeline"
+            android:checked="true" />
+        <item
+            android:id="@+id/my_market"
+            android:icon="@drawable/button_icon"
+            android:title="@string/my_market" />
+        <item
+            android:id="@+id/my_fares"
+            android:icon="@drawable/salary_icon"
+            android:title="@string/my_fares" />
+
+    </group>
+</menu>
