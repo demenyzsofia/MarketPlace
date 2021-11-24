@@ -15,7 +15,9 @@ interface MarketApi {
     @POST(Constants.REGISTER_URL)
     suspend fun register(@Body request: RegisterRequest): RegisterResponse
 
-//    @GET(Constants.ACTIVATE_URL)
-//    suspend fun getActivate(@Body request: RegisterRequest): RegisterResponse
+    @POST(Constants.RESET_PASSWORD_URL)
+    suspend fun resetPassword(@Body request: ResetPasswordRequest): ResetPasswordResponse
+
+
 
 }
