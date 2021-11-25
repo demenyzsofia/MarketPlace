@@ -23,7 +23,9 @@ class ForgotPasswordViewModel(val context: Context, val repository: Repository):
         val request =
             ResetPasswordRequest(username = user.value!!.username, email = user.value!!.email)
         try {
+
             val result = repository.resetPassword(request)
+
             MyApplication.token = result.token
             token.value = result.token
             Log.d("xxx", "MyApplication - token:  ${MyApplication.token}")

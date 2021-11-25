@@ -68,7 +68,7 @@ class DataAdapter(
             Log.d("xxx", "#num_images: ${images.size}")
         }
         Glide.with(this.context)
-            .load(R.mipmap.item_icon)
+            .load(R.mipmap.shopping_icon_foreground)
             .override(200, 200)
             .into(holder.imageView);
     }

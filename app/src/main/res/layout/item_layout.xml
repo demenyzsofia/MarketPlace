@@ -12,7 +12,6 @@
         android:layout_height="89dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:src="@mipmap/item_icon_foreground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></ImageView>
 

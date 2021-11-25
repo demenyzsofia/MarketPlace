@@ -16,7 +16,7 @@ class Repository {
         return RetrofitInstance.api.register(request)
     }
 
-    suspend fun resetPassword(request:  ResetPasswordRequest): ResetPasswordResponse {
+    suspend fun resetPassword(request: ResetPasswordRequest): ResetPasswordResponse {
         return RetrofitInstance.api.resetPassword(request)
     }
 }

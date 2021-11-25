@@ -42,7 +42,7 @@ data class RegisterResponse (
 @JsonClass(generateAdapter = true)
 data class ResetPasswordRequest (
     var username: String,
-    var email: String,
+    var email: String
 )
 
 @JsonClass(generateAdapter = true)
@@ -52,4 +52,5 @@ data class ResetPasswordResponse (
     var token: String,
     var creation_time: Long,
     var refresh_time: Long
+
 )

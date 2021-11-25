@@ -1,5 +1,6 @@
 package com.example.marketplace.fragments
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -45,24 +46,24 @@ class ForgotPasswordFragment : Fragment() {
     }
 
     private fun registerListeners(view: View) {
-        emailMe_button.setOnClickListener(){
+        emailMe_button.setOnClickListener{
             forgotPasswordViewModel.user.value.let {
                 if (it != null) {
                     it.username = name_edittext.text.toString()
                 }
                 if (it != null) {
-                    it.password = email_edittext.text.toString()
+                    it.email = email_edittext.text.toString()
                 }
             }
             lifecycleScope.launch {
                 forgotPasswordViewModel.resetPassword()
             }
-
         }
         forgotPasswordViewModel.token.observe(viewLifecycleOwner){
-            Toast.makeText(context , "Email in progress'", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context , "Email in progress...", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
         }
+
     }
 
     private fun initializeView(view: View) {

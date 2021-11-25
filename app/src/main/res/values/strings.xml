@@ -19,4 +19,8 @@
     <string name="timeline">Timeline</string>
     <string name="my_market">My Market</string>
     <string name="my_fares">My fares</string>
+    <string name="Search">fdd</string>
+    <string name="filter">Filter</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
 </resources>
