@@ -23,4 +23,6 @@
     <string name="filter">Filter</string>
     <string name="search">Search</string>
     <string name="profile">Profile</string>
+    <string name="fullname">Full name</string>
+    <string name="publish">Publish</string>
 </resources>
