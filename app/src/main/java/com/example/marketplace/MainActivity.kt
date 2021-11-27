@@ -45,6 +45,10 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.loginFragment -> appBar_layout.visibility = View.GONE
                 R.id.listFragment -> appBar_layout.visibility = View.VISIBLE
+                R.id.profileSettingsFragment -> topAppBar.setTitle("Settings")
+                //other users profile screen
+                R.id.profileFragment -> topAppBar.setTitle("Profile")
+
 
             }
         }
@@ -65,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             menuItem.isChecked = true
             when (menuItem.itemId ) {
                 R.id.profile -> {
-                    findNavController( R.id.nav_host_fragment).navigate(R.id.settingsFragment)
+                    findNavController( R.id.nav_host_fragment).navigate(R.id.profileSettingsFragment)
                     menuItem.isChecked = true
                     true
                 }

@@ -25,10 +25,6 @@ class ForgotPasswordViewModel(val context: Context, val repository: Repository):
         try {
 
             val result = repository.resetPassword(request)
-
-            MyApplication.token = result.token
-            token.value = result.token
-            Log.d("xxx", "MyApplication - token:  ${MyApplication.token}")
         } catch (e: HttpException) {
             Log.d("xxx","LoginViewModel - exception: ${e.message()}")
             when(e.code()){

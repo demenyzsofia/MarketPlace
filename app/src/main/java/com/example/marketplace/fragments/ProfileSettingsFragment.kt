@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +15,16 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.marketplace.R
-import com.example.marketplace.viewmodels.MarketViewModel
+import com.example.marketplace.repository.Repository
+import com.example.marketplace.viewmodels.*
+import kotlinx.coroutines.launch
 
-class SettingsFragment : Fragment() {
+class ProfileSettingsFragment : Fragment() {
+    private lateinit var profilSettingsViewModel: UserUpdateViewModel
     private lateinit var profile_image : ImageView
     private val pickImage = 100
     private var imageUri: Uri? = null
@@ -26,12 +33,12 @@ class SettingsFragment : Fragment() {
     private lateinit var userName : EditText
     private lateinit var phoneNumber : EditText
     private lateinit var emailAddress : EditText
-    private lateinit var password : EditText
     private lateinit var publishButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val factory = UserUpdateViewModelFactory(this.requireContext(), Repository())
+        profilSettingsViewModel = ViewModelProvider(this, factory).get(UserUpdateViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -39,7 +46,7 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_settings, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile_settings, container, false)
         view?.apply {
 
             initializeView(this)
@@ -52,11 +59,10 @@ class SettingsFragment : Fragment() {
     private fun initializeView(view: View) {
         profile_image = view.findViewById(R.id.imageView_profile)
         fullPersonName = view.findViewById(R.id.textView_fullName)
-        userName = view.findViewById(R.id.editText_profile_userName)
-        phoneNumber = view.findViewById(R.id.editText_profile_phone)
-        emailAddress = view.findViewById(R.id.editText_profile_email)
-        password = view.findViewById(R.id.editText_profile_password)
-        publishButton = view.findViewById(R.id.button_profile)
+        userName = view.findViewById(R.id.editText_settings_userName)
+        phoneNumber = view.findViewById(R.id.editText_settings_phone)
+        emailAddress = view.findViewById(R.id.editText_settings_email)
+        publishButton = view.findViewById(R.id.button_settings)
     }
 
     private fun registerListeners(view: View) {
@@ -67,8 +73,30 @@ class SettingsFragment : Fragment() {
         //beteszi a regisztracional beirt teljes nevet
         fullPersonName.setText(marketViewModel.getFullPersonName())
 
-        publishButton.setOnClickListener{
+
+        publishButton.setOnClickListener {
+
+            profilSettingsViewModel.user.value.let {
+                if (it != null) {
+                    it.username = userName.text.toString()
+                }
+                if (it != null) {
+                    it.email = emailAddress.text.toString()
+                }
+                if (it != null) {
+                    it.phone_number = phoneNumber.text.toString()
+                }
+            }
+            lifecycleScope.launch {
+                profilSettingsViewModel.userUpdate()
+            }
         }
+        profilSettingsViewModel.token.observe(viewLifecycleOwner){
+
+
+        }
+
+
     }
     //kep beszurasahoz a galeryabol
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

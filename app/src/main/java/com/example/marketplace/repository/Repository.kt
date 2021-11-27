@@ -2,6 +2,7 @@ package com.example.marketplace.repository
 
 import com.example.marketplace.api.RetrofitInstance
 import com.example.marketplace.models.*
+import retrofit2.http.Body
 
 class Repository {
     suspend fun login(request: LoginRequest): LoginResponse {
@@ -18,5 +19,9 @@ class Repository {
 
     suspend fun resetPassword(request: ResetPasswordRequest): ResetPasswordResponse {
         return RetrofitInstance.api.resetPassword(request)
+    }
+
+    suspend fun userUpdate(request: UserUpdateRequest): UserUpdateResponse {
+        return RetrofitInstance.api.userUpdate(request)
     }
 }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -27,6 +28,7 @@ class LoginFragment : Fragment() {
     private lateinit  var login_button : Button
     private lateinit var signup_button : Button
     private lateinit var clickhere_textview : TextView
+    private lateinit var personImage : ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

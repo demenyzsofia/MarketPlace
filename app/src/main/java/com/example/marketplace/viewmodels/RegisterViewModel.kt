@@ -23,11 +23,9 @@ class RegisterViewModel(val context: Context, val repository: Repository): ViewM
     suspend fun register() {
         val request =
             RegisterRequest(username = user.value!!.username, password = user.value!!.password, email = user.value!!.email, phone_number = user.value!!.phone_number)
+
         try {
             val result = repository.register(request)
-            MyApplication.token = result.token
-            token.value = result.token
-            Log.d("xxx", "MyApplication - token:  ${MyApplication.token}")
         } catch (e: HttpException) {
             Log.d("xxx","RegisterViewModel - exception: ${e.message()}")
             when(e.code()){

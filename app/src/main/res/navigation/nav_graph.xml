@@ -27,8 +27,8 @@
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
-            android:id="@+id/action_listFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_listFragment_to_profileSettingsFragment"
+            app:destination="@id/profileSettingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -49,8 +49,13 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.marketplace.fragments.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:id="@+id/profileFragment"
+        android:name="com.example.marketplace.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/profileSettingsFragment"
+        android:name="com.example.marketplace.fragments.ProfileSettingsFragment"
+        android:label="fragment_profileSettings"
+        tools:layout="@layout/fragment_profileSettings" />
 </navigation>

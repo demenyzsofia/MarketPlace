@@ -60,6 +60,8 @@ class RegisterFragment : Fragment() {
         }
 
         register_button.setOnClickListener {
+            marketViewModel.getUpdateFullPersonName(full_name.text.toString())
+
             registerViewModel.user.value.let {
                 if (it != null) {
                     it.username = username_edittext.text.toString()
@@ -81,9 +83,10 @@ class RegisterFragment : Fragment() {
         }
         registerViewModel.token.observe(viewLifecycleOwner){
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+
         }
 
-        marketViewModel.getUpdateFullPersonName(full_name.toString())
+
     }
 
     private fun initializeView(view: View) {

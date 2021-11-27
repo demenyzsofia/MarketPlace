@@ -25,4 +25,6 @@
     <string name="profile">Profile</string>
     <string name="fullname">Full name</string>
     <string name="publish">Publish</string>
+    <string name="message">Send a chat message</string>
+    <string name="phonenum">Phone number</string>
 </resources>

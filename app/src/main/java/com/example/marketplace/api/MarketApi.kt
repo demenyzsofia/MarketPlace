@@ -19,5 +19,9 @@ interface MarketApi {
     suspend fun resetPassword(@Body request: ResetPasswordRequest): ResetPasswordResponse
 
 
+    //profil -> settings fragment
+    @POST(Constants.USER_UPDATE_URL)
+    suspend fun userUpdate(@Body request: UserUpdateRequest): UserUpdateResponse
+
 
 }

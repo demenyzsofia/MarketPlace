@@ -1,6 +1,9 @@
 package com.example.marketplace.models
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import org.json.JSONArray
+import java.io.File
 
 data class User(var username: String="", var password: String="", var email: String="", var phone_number: String="")
 
@@ -31,12 +34,10 @@ data class RegisterRequest (
 
 @JsonClass(generateAdapter = true)
 data class RegisterResponse (
-    var username: String,
-    var email: String,
-    var phone_number: Int,
-    var token: String,
+    var code: Int,
+    var message: String,
     var creation_time: Long,
-    var refresh_time: Long
+
 )
 
 @JsonClass(generateAdapter = true)
@@ -47,10 +48,25 @@ data class ResetPasswordRequest (
 
 @JsonClass(generateAdapter = true)
 data class ResetPasswordResponse (
+    var code: Int,
+    var message: String,
+    var timestamp: Long,
+
+)
+
+@JsonClass(generateAdapter = true)
+data class UserUpdateRequest (
     var username: String,
     var email: String,
-    var token: String,
-    var creation_time: Long,
-    var refresh_time: Long
+    var phone_number: String,
+
+
+)
+
+@JsonClass(generateAdapter = true)
+data class UserUpdateResponse (
+    var code: Int,
+    var updateData : JSONArray,
+    var timestamp: Long
 
 )
