@@ -1,5 +1,8 @@
 package com.example.marketplace.viewmodels
 
+import android.content.ClipData
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,9 +14,15 @@ import kotlinx.coroutines.launch
 
 class ListViewModel(private val repository: Repository) : ViewModel() {
     var products: MutableLiveData<List<Product>> = MutableLiveData()
+    var currentPosition: Int = 0
 
     init{
         getProducts()
+    }
+
+
+    fun getOneProduct(): Product? {
+        return products.value?.get(currentPosition)
     }
 
     fun getProducts() {

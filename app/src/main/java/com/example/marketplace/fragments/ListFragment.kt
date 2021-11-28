@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -63,7 +64,8 @@ class ListFragment : Fragment() , DataAdapter.OnItemClickListener, DataAdapter.O
     }
 
     override fun onItemClick(position: Int) {
-//        TODO("Not yet implemented")
+        listViewModel.currentPosition = position
+        findNavController().navigate(R.id.action_listFragment_to_productDetailFragment)
     }
 
     override fun onItemLongClick(position: Int) {

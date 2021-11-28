@@ -1,5 +1,6 @@
 package com.example.marketplace
 
+import android.app.PendingIntent.getActivity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -24,12 +25,36 @@ class MainActivity : AppCompatActivity() {
 
         initializeView()
 
+        setNavigationIconAndTitle()
         hideBottomNavigation()
         hideAppBarLayout()
+
 
         initMenuTopAppBar()
         initMenuBottomNavigation()
 
+
+    }
+
+    private fun setNavigationIconAndTitle() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.profileSettingsFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
+
+                R.id.listFragment -> topAppBar.setNavigationIcon(R.drawable.market_icon)
+                R.id.profileSettingsFragment -> topAppBar.setTitle("Settings")
+
+                R.id.productDetailFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
+                R.id.productDetailFragment -> topAppBar.setTitle("Product detail")
+
+                //other users profile screen
+                R.id.profileFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
+                R.id.profileFragment -> topAppBar.setTitle("Profile")
+
+            }
+
+        }
+        topAppBar.setNavigationOnClickListener(View.OnClickListener { this.onBackPressed() })
     }
 
 
@@ -45,13 +70,11 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.loginFragment -> appBar_layout.visibility = View.GONE
                 R.id.listFragment -> appBar_layout.visibility = View.VISIBLE
-                R.id.profileSettingsFragment -> topAppBar.setTitle("Settings")
-                //other users profile screen
-                R.id.profileFragment -> topAppBar.setTitle("Profile")
-
 
             }
+
         }
+
     }
 
     private fun hideBottomNavigation() {
@@ -102,7 +125,7 @@ class MainActivity : AppCompatActivity() {
             menuItem.isChecked = true
             when (menuItem.itemId ) {
                 R.id.timeline -> {
-                    //findNavController( R.id.nav_host_fragment).navigate(R.id.)
+                    findNavController( R.id.nav_host_fragment).navigate(R.id.listFragment)
                     menuItem.isChecked = true
                     true
                 }
