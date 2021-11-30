@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.marketplace.R
 import com.example.marketplace.models.Product
@@ -19,17 +20,21 @@ import com.example.marketplace.viewmodels.ListViewModelFactory
 import com.example.marketplace.viewmodels.MarketViewModel
 
 class ProductDetailFragment : Fragment() {
-    lateinit var listViewModel: ListViewModel
     lateinit var productImage : ImageView
     lateinit var productName : TextView
     lateinit var productSeller : TextView
     lateinit var productDescription : TextView
     lateinit var productPrice : TextView
 
+    val factory = ListViewModelFactory(Repository())
+    private val listViewModel: ListViewModel by lazy{
+        ViewModelProvider(requireActivity(),factory).get((ListViewModel::class.java))
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = ListViewModelFactory(Repository())
-        listViewModel = ViewModelProvider(this, factory).get(ListViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -49,10 +54,13 @@ class ProductDetailFragment : Fragment() {
         val product: Product? = listViewModel.getOneProduct()
 
         productDescription.setText(product?.description)
-        productPrice.setText(product?.price_per_unit)
+        productPrice.setText(product?.price_per_unit + " RON")
         productSeller.setText(product?.username)
         productName.setText(product?.title)
-        //productImage.setImageResource(product?.images)
+        //productImage.setImageResource(product.images)
+
+
+
     }
 
     private fun initializeView(view: View) {
@@ -64,3 +72,4 @@ class ProductDetailFragment : Fragment() {
     }
 
 }
+

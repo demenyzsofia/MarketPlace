@@ -4,8 +4,10 @@ import android.app.PendingIntent.getActivity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.example.marketplace.viewmodels.ListViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -25,7 +27,9 @@ class MainActivity : AppCompatActivity() {
 
         initializeView()
 
-        setNavigationIconAndTitle()
+        setNavigationIcon()
+        setFragmentsTitle()
+
         hideBottomNavigation()
         hideAppBarLayout()
 
@@ -33,24 +37,28 @@ class MainActivity : AppCompatActivity() {
         initMenuTopAppBar()
         initMenuBottomNavigation()
 
-
     }
 
-    private fun setNavigationIconAndTitle() {
+    private fun setFragmentsTitle() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.listFragment -> topAppBar.setTitle("Bazaar")
+                R.id.profileSettingsFragment -> topAppBar.setTitle("Settings")
+                R.id.productDetailFragment -> topAppBar.setTitle("Product detail")
+                R.id.profileFragment -> topAppBar.setTitle("Profil")
+            }
+
+        }
+    }
+
+
+    private fun setNavigationIcon() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.profileSettingsFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
-
                 R.id.listFragment -> topAppBar.setNavigationIcon(R.drawable.market_icon)
-                R.id.profileSettingsFragment -> topAppBar.setTitle("Settings")
-
                 R.id.productDetailFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
-                R.id.productDetailFragment -> topAppBar.setTitle("Product detail")
-
-                //other users profile screen
                 R.id.profileFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
-                R.id.profileFragment -> topAppBar.setTitle("Profile")
-
             }
 
         }
@@ -58,12 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun initializeView() {
-        bottom_navigation = findViewById(R.id.bottom_navigation)
-        navController = findNavController(R.id.nav_host_fragment)
-        appBar_layout = findViewById(R.id.appBarLayout)
-        topAppBar = findViewById(R.id.topAppBar)
-    }
+
 
     private fun hideAppBarLayout() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -147,5 +150,10 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
+    private fun initializeView() {
+        bottom_navigation = findViewById(R.id.bottom_navigation)
+        navController = findNavController(R.id.nav_host_fragment)
+        appBar_layout = findViewById(R.id.appBarLayout)
+        topAppBar = findViewById(R.id.topAppBar)
+    }
 }

@@ -14,12 +14,11 @@ import kotlinx.coroutines.launch
 
 class ListViewModel(private val repository: Repository) : ViewModel() {
     var products: MutableLiveData<List<Product>> = MutableLiveData()
-    var currentPosition: Int = 0
+    private var currentPosition: Int = 0
 
     init{
         getProducts()
     }
-
 
     fun getOneProduct(): Product? {
         return products.value?.get(currentPosition)
@@ -36,5 +35,10 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
                 Log.d("xxx", "ListViewMofdel exception: ${e.toString()}")
             }
         }
+    }
+
+    fun updateCurrentPosition(position : Int): Int {
+        currentPosition = position
+        return currentPosition
     }
 }

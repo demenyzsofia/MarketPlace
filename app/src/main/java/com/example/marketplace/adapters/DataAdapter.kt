@@ -21,7 +21,9 @@ class DataAdapter(
     RecyclerView.Adapter<DataAdapter.DataViewHolder>() {
 
     interface OnItemClickListener{
+        fun onSellerNameClick(position : Int)
         fun onItemClick(position: Int)
+
     }
 
     interface OnItemLongClickListener{
@@ -32,17 +34,27 @@ class DataAdapter(
         View.OnClickListener, View.OnLongClickListener {
         val imageView: ImageView = itemView.findViewById(R.id.imageView_product_item_layout)
         val textView_price: TextView = itemView.findViewById(R.id.textView_price_item_layout)
-        val textView_name: TextView = itemView.findViewById(R.id.textView_name_item_layout)
-        val textView_productname: TextView = itemView.findViewById(R.id.textView_productname_item_layout)
+        val textView_productname: TextView = itemView.findViewById(R.id.textView_name_item_layout)
+        val textView_name_seller: TextView = itemView.findViewById(R.id.textView_sellername_item_layout)
+
 
 
         init{
             itemView.setOnClickListener(this)
             itemView.setOnLongClickListener(this)
+            textView_name_seller.setOnClickListener(this)
         }
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
-            listener.onItemClick(currentPosition)
+
+
+            if (this.textView_name_seller.isPressed) {
+                    listener.onSellerNameClick(currentPosition)
+
+            }
+            else{
+                listener.onItemClick(currentPosition)
+            }
 
         }
 
@@ -60,9 +72,9 @@ class DataAdapter(
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         val currentItem = list[position]
-        holder.textView_name.text = currentItem.title
+        holder.textView_name_seller.text = currentItem.username
         holder.textView_price.text = currentItem.price_per_unit
-        holder.textView_productname.text = currentItem.username
+        holder.textView_productname.text = currentItem.title
         val images = currentItem.images
         if( images != null && images.size > 0) {
             Log.d("xxx", "#num_images: ${images.size}")
@@ -79,4 +91,7 @@ class DataAdapter(
     fun setData(newlist: ArrayList<Product>){
         list = newlist
     }
+
+
+
 }
