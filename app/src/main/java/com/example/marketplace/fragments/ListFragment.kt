@@ -81,7 +81,6 @@ class ListFragment : Fragment() , DataAdapter.OnItemClickListener, DataAdapter.O
 
     override  fun onSellerNameClick(position : Int){
         findNavController().navigate(R.id.action_listFragment_to_profileFragment)
-
     }
 
 

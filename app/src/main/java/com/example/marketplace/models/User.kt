@@ -2,6 +2,7 @@ package com.example.marketplace.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import com.squareup.moshi.ToJson
 import org.json.JSONArray
 import java.io.File
 
@@ -70,3 +71,14 @@ data class UserUpdateResponse (
     var timestamp: Long
 
 )
+
+@JsonClass(generateAdapter = true)
+data class OneUser(val username: String,
+                   val phone_number: Int,
+                   val email: String,
+                   val firebase_token: String,
+                   val is_activated: Boolean,
+                   val creation_time: Long)
+
+@JsonClass(generateAdapter = true)
+data class UserDataResponse(val code: Int, val data: List<OneUser>, val timestamp: Long)

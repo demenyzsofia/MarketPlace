@@ -16,9 +16,12 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
     var products: MutableLiveData<List<Product>> = MutableLiveData()
     private var currentPosition: Int = 0
 
+
     init{
         getProducts()
     }
+
+
 
     fun getOneProduct(): Product? {
         return products.value?.get(currentPosition)
