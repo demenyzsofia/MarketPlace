@@ -1,11 +1,11 @@
 package com.example.marketplace.fragments
 
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -76,11 +76,17 @@ class ListFragment : Fragment() , DataAdapter.OnItemClickListener, DataAdapter.O
     }
 
     override fun onItemLongClick(position: Int) {
-//        TODO("Not yet implemented")
+
     }
 
     override  fun onSellerNameClick(position : Int){
+        listViewModel.updateCurrentPosition(position)
         findNavController().navigate(R.id.action_listFragment_to_profileFragment)
+    }
+
+    override  fun onOrderButtonClick(position: Int){
+        listViewModel.updateCurrentPosition(position)
+        findNavController().navigate(R.id.action_listFragment_to_orderDialog)
     }
 
 

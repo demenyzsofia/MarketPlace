@@ -27,4 +27,10 @@
     <string name="publish">Publish</string>
     <string name="message">Send a chat message</string>
     <string name="phonenum">Phone number</string>
+    <string name="myorder">My Order</string>
+    <string name="amount">Amount</string>
+    <string name="comment">Comments</string>
+    <string name="revolut">Place your order and track it\'s avalability before you send Revolut payment!</string>
+    <string name="cancel">Cancel</string>
+    <string name="sendorder">Send my order</string>
 </resources>

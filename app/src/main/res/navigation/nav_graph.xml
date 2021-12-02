@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_listFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_orderDialog"
+            app:destination="@id/orderDialog" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -69,4 +72,12 @@
         android:name="com.example.marketplace.fragments.ProductDetailFragment"
         android:label="fragment_product_detail"
         tools:layout="@layout/fragment_product_detail" />
+    <dialog
+        android:id="@+id/orderDialog"
+        android:name="com.example.marketplace.fragments.OrderDialog"
+        android:label="OrderDialog" >
+        <action
+            android:id="@+id/action_orderDialog_to_listFragment"
+            app:destination="@id/listFragment" />
+    </dialog>
 </navigation>

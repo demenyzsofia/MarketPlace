@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ class DataAdapter(
     RecyclerView.Adapter<DataAdapter.DataViewHolder>() {
 
     interface OnItemClickListener{
+        fun onOrderButtonClick(position: Int)
         fun onSellerNameClick(position : Int)
         fun onItemClick(position: Int)
 
@@ -36,13 +38,14 @@ class DataAdapter(
         val textView_price: TextView = itemView.findViewById(R.id.textView_price_item_layout)
         val textView_productname: TextView = itemView.findViewById(R.id.textView_name_item_layout)
         val textView_name_seller: TextView = itemView.findViewById(R.id.textView_sellername_item_layout)
-
+        val button_order : Button = itemView.findViewById(R.id.button_ordernow)
 
 
         init{
             itemView.setOnClickListener(this)
             itemView.setOnLongClickListener(this)
             textView_name_seller.setOnClickListener(this)
+            button_order.setOnClickListener(this)
         }
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
@@ -51,6 +54,9 @@ class DataAdapter(
             if (this.textView_name_seller.isPressed) {
                     listener.onSellerNameClick(currentPosition)
 
+            }
+            else if(this.button_order.isPressed){
+                listener.onOrderButtonClick(currentPosition)
             }
             else{
                 listener.onItemClick(currentPosition)
