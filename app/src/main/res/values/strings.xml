@@ -33,4 +33,7 @@
     <string name="revolut">Place your order and track it\'s avalability before you send Revolut payment!</string>
     <string name="cancel">Cancel</string>
     <string name="sendorder">Send my order</string>
+    <string name="ordercompleted">Order completed</string>
+    <string name="completedorder">Please track your order under Ongoing Orders. Thank you!</string>
+    <string name="close">Close</string>
 </resources>

@@ -79,5 +79,16 @@
         <action
             android:id="@+id/action_orderDialog_to_listFragment"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_orderDialog_to_completedOrderDialog"
+            app:destination="@id/completedOrderDialog" />
+    </dialog>
+    <dialog
+        android:id="@+id/completedOrderDialog"
+        android:name="com.example.marketplace.fragments.CompletedOrderDialog"
+        android:label="CompletedOrderDialog" >
+        <action
+            android:id="@+id/action_completedOrderDialog_to_listFragment"
+            app:destination="@id/listFragment" />
     </dialog>
 </navigation>

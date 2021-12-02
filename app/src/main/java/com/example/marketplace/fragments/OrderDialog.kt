@@ -67,14 +67,20 @@ class OrderDialog : DialogFragment() {
         amount.setText( product?.units.toString())
 
 
-        cancelButton.setOnClickListener(){
+        cancelButton.setOnClickListener{
             findNavController().navigate(R.id.action_orderDialog_to_listFragment)
+        }
+
+        orderButton.setOnClickListener{
+            findNavController().navigate(R.id.action_orderDialog_to_completedOrderDialog)
+
+
         }
     }
 
     private fun initializeView(view: View) {
         orderButton = view.findViewById(R.id.button_order_sendorder)
-        cancelButton = view.findViewById(R.id.button_order_cancel)
+        cancelButton = view.findViewById(R.id.button_completed_order_close)
         sellerName = view.findViewById(R.id.textView_order_sellerName)
         productName = view.findViewById(R.id.textView_order_productName)
         productPrice = view.findViewById(R.id.textView_order_price)
