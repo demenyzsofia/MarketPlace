@@ -79,13 +79,9 @@ class RegisterFragment : Fragment() {
             lifecycleScope.launch {
                 registerViewModel.register()
             }
-
-        }
-        registerViewModel.token.observe(viewLifecycleOwner){
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
 
         }
-
 
     }
 

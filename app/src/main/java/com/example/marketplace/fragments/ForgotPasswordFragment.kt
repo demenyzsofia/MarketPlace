@@ -58,8 +58,6 @@ class ForgotPasswordFragment : Fragment() {
             lifecycleScope.launch {
                 forgotPasswordViewModel.resetPassword()
             }
-        }
-        forgotPasswordViewModel.token.observe(viewLifecycleOwner){
             Toast.makeText(context , "Email in progress...", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
         }

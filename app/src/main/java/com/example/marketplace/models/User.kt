@@ -5,6 +5,11 @@ import com.squareup.moshi.JsonClass
 import com.squareup.moshi.ToJson
 import org.json.JSONArray
 import java.io.File
+import android.R
+
+import android.graphics.drawable.Drawable
+import android.widget.ImageView
+
 
 data class User(var username: String="", var password: String="", var email: String="", var phone_number: String="")
 
@@ -55,19 +60,30 @@ data class ResetPasswordResponse (
 
 )
 
+
 @JsonClass(generateAdapter = true)
 data class UserUpdateRequest (
     var username: String,
     var email: String,
     var phone_number: String,
-
+//    var image : File
 
 )
 
 @JsonClass(generateAdapter = true)
+data class UpdatedData (
+    var username : String,
+    var phone_number : String,
+    var emial : String,
+    var is_activated: Boolean,
+    var creation_time : String,
+    var token : String
+    )
+
+@JsonClass(generateAdapter = true)
 data class UserUpdateResponse (
     var code: Int,
-    var updateData : JSONArray,
+    var updatedData : UpdatedData,
     var timestamp: Long
 
 )

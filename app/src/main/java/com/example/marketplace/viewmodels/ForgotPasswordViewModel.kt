@@ -12,7 +12,6 @@ import com.example.marketplace.repository.Repository
 import retrofit2.HttpException
 
 class ForgotPasswordViewModel(val context: Context, val repository: Repository): ViewModel() {
-    var token: MutableLiveData<String> = MutableLiveData()
     var user = MutableLiveData<User>()
 
     init {
@@ -23,7 +22,6 @@ class ForgotPasswordViewModel(val context: Context, val repository: Repository):
         val request =
             ResetPasswordRequest(username = user.value!!.username, email = user.value!!.email)
         try {
-
             val result = repository.resetPassword(request)
         } catch (e: HttpException) {
             Log.d("xxx","LoginViewModel - exception: ${e.message()}")
