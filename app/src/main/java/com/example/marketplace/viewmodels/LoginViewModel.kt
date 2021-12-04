@@ -25,7 +25,6 @@ class LoginViewModel(val context: Context, val repository: Repository) : ViewMod
     }
 
 
-
     suspend fun login() {
         val request =
             LoginRequest(username = user.value!!.username, password = user.value!!.password)

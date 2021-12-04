@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -24,6 +25,7 @@ class OrderDialog : DialogFragment() {
     private lateinit var productPrice: TextView
     private lateinit var isActive: TextView
     private lateinit var amount: EditText
+    private lateinit var revolut: EditText
 
 
     val factory = ListViewModelFactory(Repository())
@@ -72,9 +74,12 @@ class OrderDialog : DialogFragment() {
         }
 
         orderButton.setOnClickListener{
-            findNavController().navigate(R.id.action_orderDialog_to_completedOrderDialog)
-
-
+            if (revolut.text.isEmpty()){
+                Toast.makeText(context , "The Revolut pay link is empty!", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                findNavController().navigate(R.id.action_orderDialog_to_completedOrderDialog)
+            }
         }
     }
 
@@ -86,6 +91,7 @@ class OrderDialog : DialogFragment() {
         productPrice = view.findViewById(R.id.textView_order_price)
         isActive = view.findViewById(R.id.textView_order_isactive)
         amount = view.findViewById(R.id.editText_order_amount)
+        revolut = view.findViewById(R.id.editText_order_revolut)
 
     }
 

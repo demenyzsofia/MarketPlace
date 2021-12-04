@@ -17,19 +17,21 @@ import com.example.marketplace.repository.Repository
 import com.example.marketplace.viewmodels.*
 
 class ProfileFragment : Fragment() {
-
+    private lateinit var userDataViewModel: UserDataViewModel
     private lateinit var personEmail: TextView
     private lateinit var personPhone: TextView
     private lateinit var userName: TextView
 
 
-    val factory = UserDataViewModelFactory(Repository())
-    private val userDataViewModel: UserDataViewModel by lazy{
-        ViewModelProvider(requireActivity(),factory).get((UserDataViewModel::class.java))
+    val factoryList = ListViewModelFactory(Repository())
+    private val listViewModel: ListViewModel by lazy{
+        ViewModelProvider(requireActivity(),factoryList).get((ListViewModel::class.java))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val factory = UserDataViewModelFactory(this.requireContext(), Repository(),listViewModel.getSellerName())
+        userDataViewModel = ViewModelProvider(this, factory).get(UserDataViewModel::class.java)
 
     }
 
@@ -41,10 +43,13 @@ class ProfileFragment : Fragment() {
         view?.apply {
 
             initializeView(this)
-            val oneuser = userDataViewModel.userData.value?.get(0)
-            personEmail.text = oneuser?.email.toString()
-            personPhone.text = oneuser?.phone_number.toString()
-            userName.text = oneuser?.username.toString()
+            userDataViewModel.userData.observe(viewLifecycleOwner){
+                val oneuser = userDataViewModel.userData.value?.get(0)
+                personEmail.text = oneuser?.email.toString()
+                personPhone.text = oneuser?.phone_number.toString()
+                userName.text = oneuser?.username.toString()
+            }
+
 
         }
         return view

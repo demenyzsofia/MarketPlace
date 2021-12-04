@@ -27,6 +27,10 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
         return products.value?.get(currentPosition)
     }
 
+    fun getSellerName() : String{
+        return products.value?.get(currentPosition)?.username.toString()
+    }
+
     fun getProducts() {
         viewModelScope.launch {
             try {

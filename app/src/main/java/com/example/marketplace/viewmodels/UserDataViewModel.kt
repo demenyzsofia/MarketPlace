@@ -14,7 +14,7 @@ import com.squareup.moshi.ToJson
 import kotlinx.coroutines.launch
 
 
-class UserDataViewModel(val repository: Repository): ViewModel() {
+class UserDataViewModel(val context: Context,val repository: Repository, val username: String) : ViewModel() {
     var userData: MutableLiveData<List<OneUser>>  = MutableLiveData()
 
     init{
@@ -25,10 +25,9 @@ class UserDataViewModel(val repository: Repository): ViewModel() {
         viewModelScope.launch {
             try {
                 val result =
-                    repository.getUserData("teszt12")
+                    repository.getUserData(username)
                 userData.value = result.data
-                Log.i("itttt",userData.value?.get(0)?.email.toString())
-                Log.d("xxx", "UserDataViewModel - #user:  ${result}")
+//                Log.d("xxx", "UserDataViewModel - #user:  ${result}")
             } catch (e: Exception) {
                 Log.d("xxx", "UserDataViewModel exception: ${e.toString()}")
             }

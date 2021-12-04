@@ -28,7 +28,6 @@ class LoginFragment : Fragment() {
     private lateinit  var login_button : Button
     private lateinit var signup_button : Button
     private lateinit var clickhere_textview : TextView
-    private lateinit var personImage : ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

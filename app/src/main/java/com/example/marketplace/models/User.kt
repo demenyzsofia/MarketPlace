@@ -11,7 +11,8 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 
 
-data class User(var username: String="", var password: String="", var email: String="", var phone_number: String="")
+data class User(var username: String="", var password: String="",
+                var email: String="", var phone_number: String="")
 
 @JsonClass(generateAdapter = true)
 data class LoginRequest (
@@ -92,7 +93,6 @@ data class UserUpdateResponse (
 data class OneUser(val username: String,
                    val phone_number: Int,
                    val email: String,
-                   val firebase_token: String,
                    val is_activated: Boolean,
                    val creation_time: Long)
 
