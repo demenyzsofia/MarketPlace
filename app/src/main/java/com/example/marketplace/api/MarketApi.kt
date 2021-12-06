@@ -16,7 +16,7 @@ interface MarketApi {
 
     //profil -> settings fragment
     @POST(Constants.USER_UPDATE_URL)
-    suspend fun userUpdate(@Body request: UserUpdateRequest): UserUpdateResponse
+    suspend fun userUpdate(@Header("token") token: String, @Body request: UserUpdateRequest): UserUpdateResponse
 
 
     @GET(Constants.GET_PRODUCT_URL)

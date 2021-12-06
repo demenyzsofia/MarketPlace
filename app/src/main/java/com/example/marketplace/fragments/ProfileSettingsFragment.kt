@@ -10,10 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -90,11 +87,22 @@ class ProfileSettingsFragment : Fragment() {
             lifecycleScope.launch {
                 profilSettingsViewModel.userUpdate()
             }
+            emailAddress.text = emailAddress.text
+            emailAddress.setEnabled(false)
+            userName.text =  userName.text
+            userName.setEnabled(false)
+            phoneNumber.text = phoneNumber.text
+            phoneNumber.setEnabled(false)
+            publishButton.setText("Go To Shopping!")
+            Toast.makeText(context , "The update was successful!", Toast.LENGTH_SHORT).show()
+            publishButton.setOnClickListener(){
+                findNavController().navigate(R.id.action_profileSettingsFragment_to_listFragment)
+            }
         }
-        profilSettingsViewModel.token.observe(viewLifecycleOwner){
 
 
-        }
+
+
 
 
     }

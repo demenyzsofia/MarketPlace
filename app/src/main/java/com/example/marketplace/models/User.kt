@@ -75,7 +75,7 @@ data class UserUpdateRequest (
 data class UpdatedData (
     var username : String,
     var phone_number : String,
-    var emial : String,
+    var email : String,
     var is_activated: Boolean,
     var creation_time : String,
     var token : String
