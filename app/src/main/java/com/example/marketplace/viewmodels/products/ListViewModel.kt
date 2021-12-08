@@ -1,8 +1,5 @@
-package com.example.marketplace.viewmodels
+package com.example.marketplace.viewmodels.products
 
-import android.content.ClipData
-import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,6 +23,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
     fun getOneProduct(): Product? {
         return products.value?.get(currentPosition)
     }
+
 
     fun getSellerName() : String{
         return products.value?.get(currentPosition)?.username.toString()

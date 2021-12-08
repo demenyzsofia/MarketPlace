@@ -14,8 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.marketplace.R
 import com.example.marketplace.models.Product
 import com.example.marketplace.repository.Repository
-import com.example.marketplace.viewmodels.ListViewModel
-import com.example.marketplace.viewmodels.ListViewModelFactory
+import com.example.marketplace.viewmodels.products.ListViewModel
+import com.example.marketplace.viewmodels.products.ListViewModelFactory
 
 class OrderDialog : DialogFragment() {
     private lateinit var orderButton: Button

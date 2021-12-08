@@ -1,7 +1,6 @@
 package com.example.marketplace.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,22 +8,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.marketplace.R
 import com.example.marketplace.repository.Repository
-import com.example.marketplace.viewmodels.MarketViewModel
-import com.example.marketplace.viewmodels.RegisterViewModel
-import com.example.marketplace.viewmodels.RegisterViewModelFactory
+import com.example.marketplace.viewmodels.user.RegisterViewModel
+import com.example.marketplace.viewmodels.user.RegisterViewModelFactory
 import kotlinx.coroutines.launch
 
 
 class RegisterFragment : Fragment() {
     private lateinit var registerViewModel: RegisterViewModel
-    private val marketViewModel: MarketViewModel by activityViewModels()
-
     private lateinit var register_login : TextView
     private lateinit var register_button : Button
     private lateinit  var username_edittext : EditText
@@ -60,7 +55,6 @@ class RegisterFragment : Fragment() {
         }
 
         register_button.setOnClickListener {
-            marketViewModel.getUpdateFullPersonName(full_name.text.toString())
 
             registerViewModel.user.value.let {
                 if (it != null) {

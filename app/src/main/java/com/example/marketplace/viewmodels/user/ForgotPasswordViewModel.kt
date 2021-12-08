@@ -1,11 +1,10 @@
-package com.example.marketplace.viewmodels
+package com.example.marketplace.viewmodels.user
 
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.marketplace.MyApplication
 import com.example.marketplace.models.ResetPasswordRequest
 import com.example.marketplace.models.User
 import com.example.marketplace.repository.Repository

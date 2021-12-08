@@ -1,8 +1,6 @@
 package com.example.marketplace.fragments
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +13,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.marketplace.R
 import com.example.marketplace.repository.Repository
-import com.example.marketplace.viewmodels.ForgotPasswordViewModel
-import com.example.marketplace.viewmodels.ForgotPasswordViewModelFactory
+import com.example.marketplace.viewmodels.user.ForgotPasswordViewModel
+import com.example.marketplace.viewmodels.user.ForgotPasswordViewModelFactory
 import kotlinx.coroutines.launch
 
 

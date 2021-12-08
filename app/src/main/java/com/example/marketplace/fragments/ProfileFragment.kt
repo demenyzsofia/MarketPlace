@@ -1,20 +1,18 @@
 package com.example.marketplace.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.load.engine.executor.GlideExecutor.UncaughtThrowableStrategy.LOG
 import com.example.marketplace.R
-import com.example.marketplace.models.OneUser
-import com.example.marketplace.models.Product
 import com.example.marketplace.repository.Repository
-import com.example.marketplace.viewmodels.*
+import com.example.marketplace.viewmodels.products.ListViewModel
+import com.example.marketplace.viewmodels.products.ListViewModelFactory
+import com.example.marketplace.viewmodels.user.UserDataViewModel
+import com.example.marketplace.viewmodels.user.UserDataViewModelFactory
 
 class ProfileFragment : Fragment() {
     private lateinit var userDataViewModel: UserDataViewModel

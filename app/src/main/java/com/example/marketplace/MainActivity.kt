@@ -1,13 +1,11 @@
 package com.example.marketplace
 
-import android.app.PendingIntent.getActivity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import com.example.marketplace.viewmodels.ListViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -133,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.my_market -> {
-                    //Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.)
+                    Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.myMarketFragment)
                     menuItem.isChecked = true
                     true
                 }

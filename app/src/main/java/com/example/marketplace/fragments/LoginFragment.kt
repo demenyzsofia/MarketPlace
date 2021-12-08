@@ -1,39 +1,39 @@
 package com.example.marketplace.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.marketplace.R
 import com.example.marketplace.repository.Repository
-import com.example.marketplace.viewmodels.LoginViewModel
-import com.example.marketplace.viewmodels.LoginViewModelFactory
+import com.example.marketplace.viewmodels.user.LoginViewModel
+import com.example.marketplace.viewmodels.user.LoginViewModelFactory
 import kotlinx.coroutines.launch
 
 
 class LoginFragment : Fragment() {
 
-    private lateinit var loginViewModel: LoginViewModel
     private lateinit  var name_edittext : EditText
     private lateinit  var password_edittext : EditText
     private lateinit  var login_button : Button
     private lateinit var signup_button : Button
     private lateinit var clickhere_textview : TextView
 
+    val factory = LoginViewModelFactory( Repository())
+    private val loginViewModel: LoginViewModel by lazy{
+        ViewModelProvider(requireActivity(),factory).get((LoginViewModel::class.java))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = LoginViewModelFactory(this.requireContext(), Repository())
-        loginViewModel = ViewModelProvider(this, factory).get(LoginViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -76,7 +76,6 @@ class LoginFragment : Fragment() {
 
         }
         loginViewModel.token.observe(viewLifecycleOwner){
-            Log.d("xxx", "navigate to list")
             findNavController().navigate(R.id.action_loginFragment_to_listFragment)
         }
 

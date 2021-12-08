@@ -36,4 +36,9 @@
     <string name="ordercompleted">Order completed</string>
     <string name="completedorder">Please track your order under Ongoing Orders. Thank you!</string>
     <string name="close">Close</string>
+    <string name="add_product_details">Give us details about your fare</string>
+    <string name="title">Title</string>
+    <string name="price_amount">Price/amount</string>
+    <string name="available_amount">Available amount</string>
+    <string name="short_description">Short description</string>
 </resources>
