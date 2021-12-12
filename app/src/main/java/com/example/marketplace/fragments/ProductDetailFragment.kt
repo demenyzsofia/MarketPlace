@@ -52,8 +52,6 @@ class ProductDetailFragment : Fragment() {
         productPrice.setText(product?.price_per_unit + " RON")
         productSeller.setText(product?.username)
         productName.setText(product?.title)
-        //productImage.setImageResource(product.images)
-
 
 
     }

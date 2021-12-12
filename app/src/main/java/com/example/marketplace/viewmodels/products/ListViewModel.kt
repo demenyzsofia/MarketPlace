@@ -20,6 +20,9 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
 
 
 
+//    fun getOneProduct(): Product? {
+//        return products.value?.get(currentPosition)
+//    }
     fun getOneProduct(): Product? {
         return products.value?.get(currentPosition)
     }
