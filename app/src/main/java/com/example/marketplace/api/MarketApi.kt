@@ -18,9 +18,20 @@ interface MarketApi {
     @POST(Constants.USER_UPDATE_URL)
     suspend fun userUpdate(@Header("token") token: String, @Body request: UserUpdateRequest): UserUpdateResponse
 
+    @Multipart
+    @POST(Constants.ADD_PRODUCT_URL)
+    suspend fun addProduct(@Header("token") token: String,
+                           @Part("title") title : String,
+                           @Part("description") description : String,
+                           @Part("price_per_unit") price_per_unit : String,
+                           @Part("units") units : String,
+                           @Part("is_active") is_active : Boolean,
+                           @Part("rating") rating : Double,
+                           @Part("amount_type") amount_type : String,
+                           @Part("price_type") price_type : String ):AddProductResponse
 
     @GET(Constants.GET_PRODUCT_URL)
-    suspend fun getProducts(@Header("token") token: String): ProductResponse
+    suspend fun getProducts(@Header("token") token: String,@Header("limit") limit: Int): ProductResponse
     //get user
     @GET(Constants.GET_USER_DATA_URL)
     suspend fun getUserData(@Header("username") username: String): UserDataResponse

@@ -102,7 +102,11 @@
         android:id="@+id/addProductFragment"
         android:name="com.example.marketplace.fragments.AddProductFragment"
         android:label="fragment_add_product"
-        tools:layout="@layout/fragment_add_product" />
+        tools:layout="@layout/fragment_add_product" >
+        <action
+            android:id="@+id/action_addProductFragment_to_myMarketFragment"
+            app:destination="@id/myMarketFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myMarketFragment"
         android:name="com.example.marketplace.fragments.MyMarketFragment"
@@ -114,7 +118,12 @@
             android:id="@+id/action_myMarketFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
-            android:id="@+id/action_myMarketFragment_to_productDetailFragment"
-            app:destination="@id/productDetailFragment" />
+            android:id="@+id/action_myMarketFragment_to_myProductDetailFragment"
+            app:destination="@id/myProductDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/myProductDetailFragment"
+        android:name="com.example.marketplace.fragments.MyProductDetailFragment"
+        android:label="fragment_my_product_detail"
+        tools:layout="@layout/fragment_my_product_detail" />
 </navigation>

@@ -69,7 +69,7 @@ class MyMarketFragment : Fragment() , MyMarketDataAdapter.OnItemClickListener {
         listViewModel.products.observe(viewLifecycleOwner){
             var products = listViewModel.products.value as ArrayList<Product>
             val prod : ArrayList<Product> = products.filter { product -> product.username == loginViewModel.user.value?.username.toString() } as ArrayList<Product>
-
+            listViewModel.updateMyProducts(prod)
             adapter.setData( prod )
             adapter.notifyDataSetChanged()
         }
@@ -93,12 +93,7 @@ class MyMarketFragment : Fragment() , MyMarketDataAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int) {
         listViewModel.updateCurrentPosition(position)
-        findNavController().navigate(R.id.action_myMarketFragment_to_productDetailFragment)
-    }
-
-    override  fun onSellerNameClick(position : Int){
-        listViewModel.updateCurrentPosition(position)
-        findNavController().navigate(R.id.action_myMarketFragment_to_profileFragment)
+        findNavController().navigate(R.id.action_myMarketFragment_to_myProductDetailFragment)
     }
 
 }

@@ -21,7 +21,6 @@ class MyMarketDataAdapter (
     RecyclerView.Adapter<MyMarketDataAdapter.DataViewHolder>() {
 
     interface OnItemClickListener{
-        fun onSellerNameClick(position : Int)
         fun onItemClick(position: Int)
     }
 
@@ -43,14 +42,7 @@ class MyMarketDataAdapter (
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
 
-
-            if (this.textView_name_seller.isPressed) {
-                listener.onSellerNameClick(currentPosition)
-
-            }
-            else{
-                listener.onItemClick(currentPosition)
-            }
+            listener.onItemClick(currentPosition)
 
         }
 

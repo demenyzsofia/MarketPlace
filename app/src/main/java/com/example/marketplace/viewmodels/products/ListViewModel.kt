@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 
 class ListViewModel(private val repository: Repository) : ViewModel() {
     var products: MutableLiveData<List<Product>> = MutableLiveData()
+    private lateinit var myProducts: ArrayList<Product>
     private var currentPosition: Int = 0
 
 
@@ -18,13 +19,16 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
         getProducts()
     }
 
+    fun updateMyProducts(list : ArrayList<Product>){
+        myProducts = list
+    }
 
-
-//    fun getOneProduct(): Product? {
-//        return products.value?.get(currentPosition)
-//    }
     fun getOneProduct(): Product? {
         return products.value?.get(currentPosition)
+    }
+
+    fun getOneProductMyList(): Product? {
+        return myProducts.get(currentPosition)
     }
 
 
@@ -36,7 +40,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             try {
                 val result =
-                    repository.getProducts(MyApplication.token)
+                    repository.getProducts(MyApplication.token,500)
                 products.value = result.products
                 Log.d("xxx", "ListViewModel - #products:  ${result.item_count}")
             }catch(e: Exception){

@@ -1,6 +1,7 @@
 package com.example.marketplace.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +47,8 @@ class ProductDetailFragment : Fragment() {
     }
 
     private fun registerListeners(view: View) {
-        val product: Product? = listViewModel.getOneProduct()
+//        val product: Product? = listViewModel.getOneProductMyList()
+       val product: Product? = listViewModel.getOneProduct()
 
         productDescription.setText(product?.description)
         productPrice.setText(product?.price_per_unit + " RON")
