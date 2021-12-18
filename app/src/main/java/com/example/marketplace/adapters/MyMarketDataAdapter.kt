@@ -56,14 +56,16 @@ class MyMarketDataAdapter (
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         val currentItem = list[position]
         holder.textView_name_seller.text = currentItem.username
-        holder.textView_price.text = currentItem.price_per_unit
-        holder.textView_productname.text = currentItem.title
+        holder.textView_price.setText(currentItem.price_per_unit)
+        holder.textView_productname.setText(currentItem.title)
+
 
         if(currentItem.is_active.toString() == "false"){
             holder.isActive_image.setVisibility(View.GONE)
             holder.textView_isActive.setText("Inactive")
         }
         else {
+            holder.isActive_image.setVisibility(View.VISIBLE)
             holder.textView_isActive.setText("Active")
         }
         val images = currentItem.images
@@ -71,7 +73,7 @@ class MyMarketDataAdapter (
             Log.d("xxx", "#num_images: ${images.size}")
         }
         Glide.with(this.context)
-            .load(R.mipmap.shopping_icon_foreground)
+            .load(R.drawable.product)
             .override(200, 200)
             .into(holder.imageView);
     }

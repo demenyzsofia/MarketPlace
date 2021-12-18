@@ -74,8 +74,6 @@ class MyMarketFragment : Fragment() , MyMarketDataAdapter.OnItemClickListener {
             adapter.notifyDataSetChanged()
         }
 
-
-
     }
 
     private fun setupRecyclerView(){

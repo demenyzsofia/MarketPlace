@@ -24,9 +24,10 @@
             android:backgroundTint="@color/lightgrey"
             app:menu="@menu/navigation_menu_top"
             app:navigationIcon="@drawable/market_icon"
+            app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
             app:subtitleTextColor="#FFFFFF"
             app:title="Bazaar"
-            app:titleTextColor="@color/grey" />
+            app:titleTextColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

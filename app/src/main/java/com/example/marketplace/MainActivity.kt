@@ -3,9 +3,11 @@ package com.example.marketplace
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import com.example.marketplace.viewmodels.products.BazaarViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,10 +20,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBar_layout : AppBarLayout
     private lateinit var  navController: NavController
     private lateinit var  topAppBar : MaterialToolbar
+    private lateinit var viewModel : BazaarViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        viewModel = ViewModelProvider(this).get(BazaarViewModel::class.java)
 
         initializeView()
 
@@ -44,6 +49,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.profileSettingsFragment -> topAppBar.setTitle("Settings")
                 R.id.productDetailFragment -> topAppBar.setTitle("Product detail")
                 R.id.profileFragment -> topAppBar.setTitle("Profil")
+                R.id.addProductFragment -> topAppBar.setTitle("Create your fare")
             }
 
         }
@@ -57,6 +63,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.listFragment -> topAppBar.setNavigationIcon(R.drawable.market_icon)
                 R.id.productDetailFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
                 R.id.profileFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
+                R.id.addProductFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
             }
 
         }
@@ -98,15 +105,16 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.search -> {
-                    //findNavController( R.id.nav_host_fragment).navigate(R.id.)
+                    viewModel.setFlag(1)
+                    findNavController( R.id.nav_host_fragment).navigate(R.id.listFragment)
                     menuItem.isChecked = true
                     true
                 }
-                R.id.filter -> {
-                    //findNavController( R.id.nav_host_fragment).navigate(R.id.)
-                    menuItem.isChecked = true
-                    true
-                }
+//                R.id.filter -> {
+//                    //findNavController( R.id.nav_host_fragment).navigate(R.id.)
+//                    menuItem.isChecked = true
+//                    true
+//                }
 
                 else ->{
                     super.onOptionsItemSelected(menuItem)
@@ -148,10 +156,13 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
     private fun initializeView() {
         bottom_navigation = findViewById(R.id.bottom_navigation)
         navController = findNavController(R.id.nav_host_fragment)
         appBar_layout = findViewById(R.id.appBarLayout)
         topAppBar = findViewById(R.id.topAppBar)
+//        searchEditText = findViewById(R.id.mSearchName)
+//        searchEditText.visibility = View.GONE
     }
 }

@@ -1,6 +1,7 @@
 package com.example.marketplace.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +11,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.marketplace.R
+import com.example.marketplace.adapters.DataAdapter
+import com.example.marketplace.adapters.MyMarketDataAdapter
+import com.example.marketplace.models.Product
 import com.example.marketplace.repository.Repository
 import com.example.marketplace.viewmodels.products.AddProductViewModel
 import com.example.marketplace.viewmodels.products.AddProductViewModelFactory
+import com.example.marketplace.viewmodels.products.ListViewModel
+import com.example.marketplace.viewmodels.products.ListViewModelFactory
 import com.example.marketplace.viewmodels.user.LoginViewModel
 import com.example.marketplace.viewmodels.user.LoginViewModelFactory
-import com.example.marketplace.viewmodels.user.UserDataViewModel
 import kotlinx.coroutines.launch
 
 
@@ -37,6 +42,10 @@ class AddProductFragment : Fragment() {
     val factory_login = LoginViewModelFactory( Repository())
     private val loginViewModel: LoginViewModel by lazy{
         ViewModelProvider(requireActivity(),factory_login).get((LoginViewModel::class.java))
+    }
+    val factory = ListViewModelFactory(Repository())
+    private val listViewModel: ListViewModel by lazy{
+        ViewModelProvider(requireActivity(),factory).get((ListViewModel::class.java))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,24 +97,25 @@ class AddProductFragment : Fragment() {
             addProductViewModel.product.value.let {
                 if (it != null) {
                     it.title = title.text.toString()
+                    Log.i("itt", title.text.toString())
                 }
                 if (it != null) {
                     it.description = description.text.toString()
                 }
                 if (it != null) {
-                    it.amount_type = amount_type.toString()
+                    it.amount_type = amount_type.selectedItem.toString()
                 }
                 if (it != null) {
-                    it.price_type = price_type.toString()
+                    it.price_type = price_type.selectedItem.toString()
                 }
                 if (it != null) {
-                    it.price_per_unit = price.toString()
+                    it.price_per_unit = price.text.toString()
                 }
                 if (it != null) {
-                    if (is_active.isChecked){
+                    if (is_active.isChecked) {
                         it.is_active = true
                     }
-                    else{
+                    else {
                         it.is_active = false
                     }
 
@@ -116,6 +126,10 @@ class AddProductFragment : Fragment() {
             }
             findNavController().navigate(R.id.action_addProductFragment_to_myMarketFragment)
         }
+        addProductViewModel.product.observe(viewLifecycleOwner){
+
+        }
+
     }
 
 

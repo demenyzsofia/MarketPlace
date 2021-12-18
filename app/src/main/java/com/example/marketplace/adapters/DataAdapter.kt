@@ -5,9 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marketplace.R
@@ -47,6 +45,7 @@ class DataAdapter(
             itemView.setOnLongClickListener(this)
             textView_name_seller.setOnClickListener(this)
             button_order.setOnClickListener(this)
+
         }
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
@@ -98,6 +97,10 @@ class DataAdapter(
     fun setData(newlist: ArrayList<Product>){
         list = newlist
     }
+
+
+
+
 
 
 
