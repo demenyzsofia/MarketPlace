@@ -78,7 +78,11 @@
         android:id="@+id/productDetailFragment"
         android:name="com.example.marketplace.fragments.ProductDetailFragment"
         android:label="fragment_product_detail"
-        tools:layout="@layout/fragment_product_detail" />
+        tools:layout="@layout/fragment_product_detail" >
+        <action
+            android:id="@+id/action_productDetailFragment_to_orderDialog"
+            app:destination="@id/orderDialog" />
+    </fragment>
     <dialog
         android:id="@+id/orderDialog"
         android:name="com.example.marketplace.fragments.OrderDialog"
