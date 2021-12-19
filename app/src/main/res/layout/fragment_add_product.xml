@@ -91,12 +91,10 @@
         android:ems="10"
         android:hint="Price"
         android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_addProduct_available_amount"
-        app:layout_constraintVertical_bias="0.017" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_addProduct_totalItem" />
 
     <EditText
         android:id="@+id/editText_addProduct_description"
@@ -180,6 +178,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_phone_addproduct"
         app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editText_addProduct_totalItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/totalitems"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_addProduct_available_amount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

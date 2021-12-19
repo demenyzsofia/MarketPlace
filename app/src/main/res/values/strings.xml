@@ -44,6 +44,10 @@
     <string name="contact_details">Contact details</string>
     <string name="previewmyfair">Preview my fair</string>
     <string name="launchmyfair">Launch my fair</string>
+    <string name="totalitems">Total items</string>
+    <string name="priceitem">Price/item</string>
+    <string name="selleditem">Selled Items</string>
+    <string name="revenew">Revenew</string>
     <string-array name="price_amount">
         <item>RON</item>
         <item>EUR</item>

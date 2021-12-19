@@ -32,6 +32,7 @@ class AddProductFragment : Fragment() {
     private lateinit var addButton : Button
     private lateinit var title : EditText
     private lateinit var description : EditText
+    private lateinit var totalItems : EditText
     private lateinit var is_active  : Switch
     private lateinit var amount_type  : Spinner
     private lateinit var price_type  : Spinner
@@ -42,10 +43,6 @@ class AddProductFragment : Fragment() {
     val factory_login = LoginViewModelFactory( Repository())
     private val loginViewModel: LoginViewModel by lazy{
         ViewModelProvider(requireActivity(),factory_login).get((LoginViewModel::class.java))
-    }
-    val factory = ListViewModelFactory(Repository())
-    private val listViewModel: ListViewModel by lazy{
-        ViewModelProvider(requireActivity(),factory).get((ListViewModel::class.java))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,11 +90,10 @@ class AddProductFragment : Fragment() {
         email.setText(loginViewModel.user.value!!.email)
         phone.setText(loginViewModel.user.value!!.phone_number)
 
-        addButton.setOnClickListener{
+        addButton.setOnClickListener {
             addProductViewModel.product.value.let {
                 if (it != null) {
                     it.title = title.text.toString()
-                    Log.i("itt", title.text.toString())
                 }
                 if (it != null) {
                     it.description = description.text.toString()
@@ -112,12 +108,10 @@ class AddProductFragment : Fragment() {
                     it.price_per_unit = price.text.toString()
                 }
                 if (it != null) {
-                    if (is_active.isChecked) {
-                        it.is_active = true
-                    }
-                    else {
-                        it.is_active = false
-                    }
+                    it.units = totalItems.text.toString()
+                }
+                if (it != null) {
+                    it.is_active = is_active.isChecked
 
                 }
             }
@@ -129,6 +123,9 @@ class AddProductFragment : Fragment() {
         addProductViewModel.product.observe(viewLifecycleOwner){
 
         }
+
+
+
 
     }
 
@@ -146,6 +143,7 @@ class AddProductFragment : Fragment() {
         username = view.findViewById(R.id.editText_name_addproduct)
         email = view.findViewById(R.id.editText_email_addproduct)
         phone = view.findViewById(R.id.editText_phone_addproduct)
+        totalItems = view.findViewById(R.id.editText_addProduct_totalItem)
     }
 
 }

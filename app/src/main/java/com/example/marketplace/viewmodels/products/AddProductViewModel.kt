@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.marketplace.MyApplication
 import com.example.marketplace.models.AddProduct
 import com.example.marketplace.models.AddProductRequest
@@ -13,6 +14,7 @@ import retrofit2.HttpException
 
 class AddProductViewModel (val context: Context, val repository: Repository): ViewModel() {
     var product = MutableLiveData<AddProduct>()
+
 
     init {
         product.value = AddProduct()
@@ -28,6 +30,7 @@ class AddProductViewModel (val context: Context, val repository: Repository): Vi
         try {
 
             val result = repository.addProduct(MyApplication.token,request)
+
 
         } catch (e: HttpException) {
             Log.d("xxx","AddProductViewModel - exception: ${e.message()}")

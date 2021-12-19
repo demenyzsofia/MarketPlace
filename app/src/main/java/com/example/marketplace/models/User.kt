@@ -1,14 +1,6 @@
 package com.example.marketplace.models
 
-import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import com.squareup.moshi.ToJson
-import org.json.JSONArray
-import java.io.File
-import android.R
-
-import android.graphics.drawable.Drawable
-import android.widget.ImageView
 
 
 data class User(var username: String="", var password: String="",

@@ -1,60 +1,92 @@
 package com.example.marketplace.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.marketplace.R
+import com.example.marketplace.models.Product
+import com.example.marketplace.repository.Repository
+import com.example.marketplace.viewmodels.products.ListViewModel
+import com.example.marketplace.viewmodels.products.ListViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MyProductDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyProductDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var productName : TextView
+    private lateinit var productSeller : TextView
+    private lateinit var productDescription : TextView
+    private lateinit var productPrice : TextView
+    private lateinit var isActive : TextView
+    private lateinit var totalItems : TextView
+    private lateinit var priceItem: TextView
+    private lateinit var selledItems: TextView
+    private lateinit var revenew: TextView
+
+    val factory = ListViewModelFactory(Repository())
+    private val listViewModel: ListViewModel by lazy{
+        ViewModelProvider(requireActivity(),factory).get((ListViewModel::class.java))
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_product_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment_my_product_detail, container, false)
+        view?.apply {
+            initializeView(this)
+            registerListeners(this)
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MyProductDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MyProductDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun registerListeners(view: View) {
+        val product: Product? = listViewModel.getOneProductMyList()
+
+        Log.i("itttt2",product.toString())
+        productDescription.setText(product?.description.toString())
+        productPrice.setText(product?.price_per_unit.toString() + " " + product?.price_type.toString() + "/" + product?.amount_type.toString())
+        productSeller.setText(product?.username.toString())
+        productName.setText(product?.title.toString())
+        if(product?.is_active.toString() == "true"){
+            isActive.text = "Active"
+        }
+        else{
+            isActive.text = "Inactive"
+        }
+        totalItems.text = product?.units.toString() + " " + product?.amount_type.toString()
+        priceItem.text = product?.price_per_unit.toString() + " " + product?.price_type.toString()
+        selledItems.text = "0" + " " + product?.amount_type.toString()
+        revenew.text = "0" + product?.price_type.toString()
+
     }
+
+    private fun initializeView(view: View) {
+        productName = view.findViewById(R.id.textView_myProduct_name)
+        productSeller = view.findViewById(R.id.textView_myProduct_seller)
+        productPrice = view.findViewById(R.id.textView_myProduct_price)
+        productDescription = view.findViewById(R.id.textView_myProduct_description)
+        isActive = view.findViewById(R.id.textView_myProduct_isActive)
+        totalItems = view.findViewById(R.id.textView_myProduct_totalItems)
+        priceItem = view.findViewById(R.id.textView_myProduct_price_item)
+        selledItems = view.findViewById(R.id.textView_myProduct_selledItems)
+        revenew = view.findViewById(R.id.textView_myProduct_revenew)
+
+    }
+
+
 }
