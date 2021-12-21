@@ -5,29 +5,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marketplace.R
-import com.example.marketplace.adapters.OrderDataAdapter
+import com.example.marketplace.adapters.OngoingSalesDataAdapter
 import com.example.marketplace.models.Order
 import com.example.marketplace.repository.Repository
 import com.example.marketplace.viewmodels.orders.OrderViewModel
 import com.example.marketplace.viewmodels.orders.OrderViewModelFactory
+import com.example.marketplace.viewmodels.user.LoginViewModel
+import com.example.marketplace.viewmodels.user.LoginViewModelFactory
 
-
-class OrderFragment : Fragment() {
+class OngoingSalesFragment : Fragment() {
     private lateinit var recycler_view: RecyclerView
-    private lateinit var adapter: OrderDataAdapter
-    private lateinit var ongoingSales_button: Button
-    private lateinit var ongoingOrders_button: Button
+    private lateinit var adapter: OngoingSalesDataAdapter
+
 
     val factory = OrderViewModelFactory(Repository())
     private val orderViewModel: OrderViewModel by lazy{
         ViewModelProvider(requireActivity(),factory).get((OrderViewModel::class.java))
+    }
+
+    val factory_login = LoginViewModelFactory( Repository())
+    private val loginViewModel: LoginViewModel by lazy{
+        ViewModelProvider(requireActivity(),factory_login).get((LoginViewModel::class.java))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,38 +42,30 @@ class OrderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =  inflater.inflate(R.layout.fragment_order, container, false)
+        val view =  inflater.inflate(R.layout.fragment_ongoing_sales, container, false)
         view?.apply {
             initializeView(this)
-            registerListeners(this)
         }
 
         return view
     }
 
-    private fun registerListeners(view: View) {
-        ongoingSales_button.setOnClickListener(){
-            findNavController().navigate(R.id.action_orderFragment_to_ongoingSalesFragment)
-        }
-
-        ongoingOrders_button.setOnClickListener(){
-            findNavController().navigate(R.id.action_orderFragment_to_ongoingOrdersFragment)
-        }
-    }
-
     private fun initializeView(view: View) {
-        ongoingSales_button = view.findViewById(R.id.button_ongoingsales)
-        ongoingOrders_button = view.findViewById(R.id.button_ongoingorders)
         recycler_view = view.findViewById(R.id.recycler_view)
         setupRecyclerView()
         orderViewModel.orders.observe(viewLifecycleOwner){
-            adapter.setData(orderViewModel.orders.value as ArrayList<Order>)
+            var orders = orderViewModel.orders.value as ArrayList<Order>
+            val ord : ArrayList<Order> = orders.filter { order -> order.owner_username == loginViewModel.user.value?.username.toString() } as ArrayList<Order>
+            orderViewModel.updateMyOrders(ord)
+            adapter.setData(ord)
             adapter.notifyDataSetChanged()
         }
+
+
     }
 
     private fun setupRecyclerView(){
-        adapter = OrderDataAdapter(ArrayList<Order>(), this.requireContext(), this)
+        adapter = OngoingSalesDataAdapter(ArrayList<Order>(), this.requireContext(),this)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this.context)
         recycler_view.addItemDecoration(
@@ -81,6 +76,5 @@ class OrderFragment : Fragment() {
         )
         recycler_view.setHasFixedSize(true)
     }
-
 
 }

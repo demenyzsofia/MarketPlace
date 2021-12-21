@@ -1,7 +1,6 @@
 package com.example.marketplace.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +9,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marketplace.R
-
-import com.example.marketplace.fragments.OrderFragment
+import com.example.marketplace.fragments.OngoingSalesFragment
 import com.example.marketplace.models.Order
 
-
-class OrderDataAdapter (
+class OngoingSalesDataAdapter (
     private var list: ArrayList<Order>,
     private val context: Context,
-    private val listener: OrderFragment
-) :RecyclerView.Adapter<OrderDataAdapter.DataViewHolder>() {
+    private val listener: OngoingSalesFragment
+) : RecyclerView.Adapter<OngoingSalesDataAdapter.DataViewHolder>() {
 
 
 

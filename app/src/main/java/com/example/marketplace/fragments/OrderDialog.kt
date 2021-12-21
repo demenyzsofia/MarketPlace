@@ -17,6 +17,8 @@ import com.example.marketplace.models.Product
 import com.example.marketplace.repository.Repository
 import com.example.marketplace.viewmodels.orders.AddOrderViewModel
 import com.example.marketplace.viewmodels.orders.AddOrderViewModelFactory
+import com.example.marketplace.viewmodels.orders.OrderViewModel
+import com.example.marketplace.viewmodels.orders.OrderViewModelFactory
 import com.example.marketplace.viewmodels.products.ListViewModel
 import com.example.marketplace.viewmodels.products.ListViewModelFactory
 import kotlinx.coroutines.launch
@@ -34,9 +36,14 @@ class OrderDialog : DialogFragment() {
     private lateinit var comment: EditText
 
 
-    val factory = ListViewModelFactory(Repository())
+    val factory_list = ListViewModelFactory(Repository())
     private val listViewModel: ListViewModel by lazy{
-        ViewModelProvider(requireActivity(),factory).get((ListViewModel::class.java))
+        ViewModelProvider(requireActivity(),factory_list).get((ListViewModel::class.java))
+    }
+
+    val factory_order = OrderViewModelFactory(Repository())
+    private val orderViewModel: OrderViewModel by lazy{
+        ViewModelProvider(requireActivity(),factory_order).get((OrderViewModel::class.java))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,6 +119,7 @@ class OrderDialog : DialogFragment() {
                 lifecycleScope.launch {
                     addOrderViewModel.addOrder()
                 }
+                orderViewModel.getOrders()
                 findNavController().navigate(R.id.action_orderDialog_to_completedOrderDialog)
             }
 

@@ -32,8 +32,8 @@ class AddOrderViewModel (val context: Context, val repository: Repository): View
                 )
 
 
-            repository.addOrder(MyApplication.token, request)
-
+            var result = repository.addOrder(MyApplication.token, request)
+            Log.i("result",result.toString())
 
         } catch (e: HttpException) {
             Log.d("xxx", "AddProductViewModel - exception: ${e.message()}")

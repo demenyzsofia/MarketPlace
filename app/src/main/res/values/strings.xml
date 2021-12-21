@@ -48,6 +48,8 @@
     <string name="priceitem">Price/item</string>
     <string name="selleditem">Selled Items</string>
     <string name="revenew">Revenew</string>
+    <string name="ongoingorders">Ongoing Orders</string>
+    <string name="ongoingsales">Ongoing Sales</string>
     <string-array name="price_amount">
         <item>RON</item>
         <item>EUR</item>

@@ -11,15 +11,14 @@ import kotlinx.coroutines.launch
 
 class OrderViewModel (private val repository: Repository) : ViewModel() {
     var orders: MutableLiveData<List<Order>> = MutableLiveData()
-    private var currentPosition: Int = 0
-
+    private lateinit var myOrders: ArrayList<Order>
 
     init{
         getOrders()
     }
 
-    fun getOneOrder(): Order? {
-        return orders.value?.get(currentPosition)
+    fun updateMyOrders(list : ArrayList<Order>){
+        myOrders = list
     }
 
     fun getOrders() {
@@ -35,8 +34,4 @@ class OrderViewModel (private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun updateCurrentPosition(position : Int): Int {
-        currentPosition = position
-        return currentPosition
-    }
 }
