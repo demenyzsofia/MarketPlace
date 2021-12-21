@@ -43,5 +43,9 @@ interface MarketApi {
     @GET(Constants.GET_USER_DATA_URL)
     suspend fun getUserData(@Header("username") username: String): UserDataResponse
 
+    @GET(Constants.GET_ORDERS_URL)
+    suspend fun getOrders(@Header("token") token: String): OrdersResponse
+
+
 
 }

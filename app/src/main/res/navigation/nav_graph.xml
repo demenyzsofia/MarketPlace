@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_listFragment_to_myMarketFragment"
             app:destination="@id/myMarketFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_orderFragment"
+            app:destination="@id/orderFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -101,6 +104,9 @@
         <action
             android:id="@+id/action_completedOrderDialog_to_listFragment"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_completedOrderDialog_to_orderFragment"
+            app:destination="@id/orderFragment" />
     </dialog>
     <fragment
         android:id="@+id/addProductFragment"
@@ -133,4 +139,9 @@
         android:name="com.example.marketplace.fragments.MyProductDetailFragment"
         android:label="fragment_my_product_detail"
         tools:layout="@layout/fragment_my_product_detail" />
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.example.marketplace.fragments.OrderFragment"
+        android:label="fragment_order"
+        tools:layout="@layout/fragment_order" />
 </navigation>

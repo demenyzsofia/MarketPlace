@@ -50,4 +50,8 @@ class Repository {
     suspend fun addOrder(token: String, request: AddOrderRequest): AddOrderResponse {
         return RetrofitInstance.api.addOrder(token,request)
     }
+
+    suspend fun getOrders( token: String): OrdersResponse{
+        return RetrofitInstance.api.getOrders(token)
+    }
 }

@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.productDetailFragment -> topAppBar.setTitle("Product detail")
                 R.id.profileFragment -> topAppBar.setTitle("Profil")
                 R.id.addProductFragment -> topAppBar.setTitle("Create your fare")
+                R.id.orderFragment -> topAppBar.setTitle("My fares")
             }
 
         }
@@ -64,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.productDetailFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
                 R.id.profileFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
                 R.id.addProductFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
+                R.id.orderFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
             }
 
         }
@@ -144,7 +146,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.my_fares -> {
-                    //Navigation.findNavController(this, R.id.nav_host_fragment) .navigate(R.id.)
+                    Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.orderFragment)
                     menuItem.isChecked = true
                     true
                 }

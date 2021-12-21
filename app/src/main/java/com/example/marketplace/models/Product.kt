@@ -60,37 +60,11 @@ data class AddProductResponse (
     var creation_time : Long
 )
 
-
-data class AddOrder(var price_per_unit: String="", var units: String="",
-                      var description: String="", var title: String="",
-                    var status: Int = 0, var owner_username: String="", var revolut_link: String="")
-
-@JsonClass(generateAdapter = true)
-data class AddOrderRequest (
-    var title: String,
-    var description: String,
-    var price_per_unit: String,
-    var units: String,
-    var status: Int,
-    var owner_username: String,
-    var revolut_link: String )
-
-@JsonClass(generateAdapter = true)
-data class AddOrderResponse (
-    var creation: String,
-    var order_id: String,
-    var username: String,
-    var status: String,
-    var price_per_unit: String,
-    var units: String,
-    var description: String,
-    var title: String,
-    var creation_time: Long)
-
-
 @JsonClass(generateAdapter = true)
 data class RemoveProdutsResponse(
     var message: String,
     var product_id: String,
     var deletion_time: String,
 )
+
+

@@ -10,14 +10,19 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.marketplace.R
 import com.example.marketplace.models.Product
 import com.example.marketplace.repository.Repository
+import com.example.marketplace.viewmodels.orders.AddOrderViewModel
+import com.example.marketplace.viewmodels.orders.AddOrderViewModelFactory
 import com.example.marketplace.viewmodels.products.ListViewModel
 import com.example.marketplace.viewmodels.products.ListViewModelFactory
+import kotlinx.coroutines.launch
 
 class OrderDialog : DialogFragment() {
+    private lateinit var addOrderViewModel: AddOrderViewModel
     private lateinit var orderButton: Button
     private lateinit var cancelButton: Button
     private lateinit var sellerName: TextView
@@ -26,6 +31,7 @@ class OrderDialog : DialogFragment() {
     private lateinit var isActive: TextView
     private lateinit var amount: EditText
     private lateinit var revolut: EditText
+    private lateinit var comment: EditText
 
 
     val factory = ListViewModelFactory(Repository())
@@ -35,7 +41,8 @@ class OrderDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val factory = AddOrderViewModelFactory(this.requireContext(), Repository())
+        addOrderViewModel = ViewModelProvider(this, factory).get(AddOrderViewModel::class.java)
 
     }
 
@@ -56,7 +63,7 @@ class OrderDialog : DialogFragment() {
     private fun registerListeners(view: View) {
         val product: Product? = listViewModel.getOneProduct()
 
-        productPrice.text = product?.price_per_unit + " RON"
+        productPrice.text = product?.price_per_unit + " " + product?.amount_type
         sellerName.text = product?.username
         productName.text = product?.title
         if (product?.is_active == true){
@@ -78,8 +85,36 @@ class OrderDialog : DialogFragment() {
                 Toast.makeText(context , "The Revolut pay link is empty!", Toast.LENGTH_SHORT).show()
             }
             else{
+                addOrderViewModel.order.value.let {
+                    if (it != null) {
+                        it.title = productName.text.toString()
+                    }
+                    if (it != null) {
+                        it.description = comment.text.toString()
+                    }
+                    if (it != null) {
+                        it.owner_username = sellerName.text.toString()
+                    }
+                    if (it != null) {
+                        it.revolut_link = revolut.text.toString()
+                    }
+                    if (it != null) {
+                        it.price_per_unit = productPrice.text.toString()
+                    }
+                    if (it != null) {
+                        it.units = amount.text.toString()
+                    }
+                    if (it != null) {
+                        it.status = "OPEN"
+                    }
+
+                }
+                lifecycleScope.launch {
+                    addOrderViewModel.addOrder()
+                }
                 findNavController().navigate(R.id.action_orderDialog_to_completedOrderDialog)
             }
+
         }
     }
 
@@ -92,6 +127,7 @@ class OrderDialog : DialogFragment() {
         isActive = view.findViewById(R.id.textView_order_isactive)
         amount = view.findViewById(R.id.editText_order_amount)
         revolut = view.findViewById(R.id.editText_order_revolut)
+        comment = view.findViewById(R.id.editText_comleted_order)
 
     }
 
