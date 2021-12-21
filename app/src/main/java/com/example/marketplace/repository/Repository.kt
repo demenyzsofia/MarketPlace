@@ -4,6 +4,7 @@ import com.example.marketplace.api.RetrofitInstance
 import com.example.marketplace.models.*
 import retrofit2.http.Body
 import retrofit2.http.Header
+import retrofit2.http.Query
 
 class Repository {
     suspend fun login(request: LoginRequest): LoginResponse {
@@ -41,5 +42,12 @@ class Repository {
             request.amount_type,
             request.price_type
         )
+    }
+    suspend fun removeProducts(token: String, product_id : String) : RemoveProdutsResponse{
+        return RetrofitInstance.api.removeProducts(token,product_id)
+    }
+
+    suspend fun addOrder(token: String, request: AddOrderRequest): AddOrderResponse {
+        return RetrofitInstance.api.addOrder(token,request)
     }
 }

@@ -4,6 +4,7 @@ package com.example.marketplace.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.*
 import android.widget.EditText
 import androidx.fragment.app.Fragment
@@ -17,9 +18,7 @@ import com.example.marketplace.R
 import com.example.marketplace.adapters.DataAdapter
 import com.example.marketplace.models.Product
 import com.example.marketplace.repository.Repository
-import com.example.marketplace.viewmodels.products.BazaarViewModel
-import com.example.marketplace.viewmodels.products.ListViewModel
-import com.example.marketplace.viewmodels.products.ListViewModelFactory
+import com.example.marketplace.viewmodels.products.*
 
 
 class ListFragment : Fragment() , DataAdapter.OnItemClickListener, DataAdapter.OnItemLongClickListener{
@@ -34,6 +33,7 @@ class ListFragment : Fragment() , DataAdapter.OnItemClickListener, DataAdapter.O
     }
 
     private val viewModel: BazaarViewModel by activityViewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +54,7 @@ class ListFragment : Fragment() , DataAdapter.OnItemClickListener, DataAdapter.O
     }
 
     private fun initializeView(view: View) {
+
         recycler_view = view.findViewById(R.id.recycler_view)
         setupRecyclerView()
         listViewModel.products.observe(viewLifecycleOwner){

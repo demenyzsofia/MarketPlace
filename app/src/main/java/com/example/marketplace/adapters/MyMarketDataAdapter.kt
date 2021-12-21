@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ class MyMarketDataAdapter (
 
     interface OnItemClickListener{
         fun onItemClick(position: Int)
+        fun onDeleteClick(position : Int)
     }
 
 
@@ -33,16 +35,26 @@ class MyMarketDataAdapter (
         val textView_name_seller: TextView = itemView.findViewById(R.id.textView_sellername_mymarketitem_layout)
         val textView_isActive: TextView = itemView.findViewById(R.id.textView_isActive_mymarketitem_layout)
         val isActive_image : ImageView = itemView.findViewById(R.id.imageView_isactive_mymarket)
-
+        val delete_button : Button = itemView.findViewById(R.id.button_delete)
 
         init{
             itemView.setOnClickListener(this)
             textView_name_seller.setOnClickListener(this)
+            delete_button.setOnClickListener(this)
         }
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
 
-            listener.onItemClick(currentPosition)
+            if (currentPosition != RecyclerView.NO_POSITION) {
+
+
+                if (this.delete_button.isPressed) {
+                    listener.onDeleteClick(currentPosition)
+                }
+                else{
+                    listener.onItemClick(currentPosition)
+                }
+            }
 
         }
 

@@ -36,11 +36,15 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
         return products.value?.get(currentPosition)?.username.toString()
     }
 
+    fun getProductId():String{
+        return myProducts?.get(currentPosition)?.product_id.toString()
+    }
+
     fun getProducts() {
         viewModelScope.launch {
             try {
                 val result =
-                    repository.getProducts(MyApplication.token,500)
+                    repository.getProducts(MyApplication.token,1000)
                 products.value = result.products
                 Log.d("xxx", "ListViewModel - #products:  ${result.item_count}")
             }catch(e: Exception){

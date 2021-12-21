@@ -1,6 +1,9 @@
 package com.example.marketplace.fragments
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +19,17 @@ import com.example.marketplace.models.Product
 import com.example.marketplace.repository.Repository
 import com.example.marketplace.viewmodels.products.ListViewModel
 import com.example.marketplace.viewmodels.products.ListViewModelFactory
+import com.example.marketplace.viewmodels.products.RemoveProductsViewModel
+import com.example.marketplace.viewmodels.products.RemoveProductsViewModelFactory
 import com.example.marketplace.viewmodels.user.LoginViewModel
 import com.example.marketplace.viewmodels.user.LoginViewModelFactory
+import com.example.marketplace.viewmodels.user.UserDataViewModel
+import com.example.marketplace.viewmodels.user.UserDataViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class MyMarketFragment : Fragment() , MyMarketDataAdapter.OnItemClickListener {
+    private lateinit var removeProductsViewModel: RemoveProductsViewModel
     private lateinit var recycler_view: RecyclerView
     private lateinit var adapter: MyMarketDataAdapter
     private lateinit var addButton: FloatingActionButton
@@ -92,6 +100,26 @@ class MyMarketFragment : Fragment() , MyMarketDataAdapter.OnItemClickListener {
     override fun onItemClick(position: Int) {
         listViewModel.updateCurrentPosition(position)
         findNavController().navigate(R.id.action_myMarketFragment_to_myProductDetailFragment)
+    }
+
+    override fun onDeleteClick(position: Int) {
+        val dialogBuilder = AlertDialog.Builder(activity)
+        dialogBuilder.setMessage("Do you want to delete this product?")
+            .setPositiveButton("Yes!", DialogInterface.OnClickListener { dialog, id ->
+                listViewModel.updateCurrentPosition(position)
+                val factory = RemoveProductsViewModelFactory(this.requireContext(), Repository(),listViewModel.getProductId())
+                removeProductsViewModel = ViewModelProvider(this, factory).get(RemoveProductsViewModel::class.java)
+                listViewModel.getProducts()
+                findNavController().navigate(R.id.action_myMarketFragment_self)
+            })
+            .setNegativeButton("No!", DialogInterface.OnClickListener { dialog, id ->
+                dialog.cancel()
+            })
+        val alert = dialogBuilder.create()
+        alert.setTitle("Secure deletion")
+        alert.show()
+
+
     }
 
 }

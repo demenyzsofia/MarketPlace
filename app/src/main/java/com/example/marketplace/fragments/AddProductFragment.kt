@@ -45,6 +45,12 @@ class AddProductFragment : Fragment() {
         ViewModelProvider(requireActivity(),factory_login).get((LoginViewModel::class.java))
     }
 
+    val factory_list = ListViewModelFactory(Repository())
+    private val listViewModel: ListViewModel by lazy{
+        ViewModelProvider(requireActivity(),factory_list).get((ListViewModel::class.java))
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val factory = AddProductViewModelFactory(this.requireContext(), Repository())
@@ -118,14 +124,9 @@ class AddProductFragment : Fragment() {
             lifecycleScope.launch {
                 addProductViewModel.addProduct()
             }
+            listViewModel.getProducts()
             findNavController().navigate(R.id.action_addProductFragment_to_myMarketFragment)
         }
-        addProductViewModel.product.observe(viewLifecycleOwner){
-
-        }
-
-
-
 
     }
 
@@ -144,6 +145,8 @@ class AddProductFragment : Fragment() {
         email = view.findViewById(R.id.editText_email_addproduct)
         phone = view.findViewById(R.id.editText_phone_addproduct)
         totalItems = view.findViewById(R.id.editText_addProduct_totalItem)
+
+
     }
 
 }

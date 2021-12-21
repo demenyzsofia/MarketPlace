@@ -30,6 +30,13 @@ interface MarketApi {
                            @Part("amount_type") amount_type : String,
                            @Part("price_type") price_type : String ):AddProductResponse
 
+    @POST(Constants.ADD_ORDERS_URL)
+    suspend fun addOrder(@Header("token") token: String, @Body request: AddOrderRequest): AddOrderResponse
+
+
+    @POST(Constants.REMOVE_PRODUCT_URL)
+    suspend fun removeProducts(@Header("token") token: String, @Query("product_id") product_id: String): RemoveProdutsResponse
+
     @GET(Constants.GET_PRODUCT_URL)
     suspend fun getProducts(@Header("token") token: String,@Header("limit") limit: Int): ProductResponse
     //get user
