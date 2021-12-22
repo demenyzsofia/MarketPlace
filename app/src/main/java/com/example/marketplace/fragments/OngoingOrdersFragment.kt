@@ -35,7 +35,7 @@ class OngoingOrdersFragment : Fragment(), OngoingOrdersDataAdapter.OnItemClickLi
         ViewModelProvider(requireActivity(),factory).get((OrderViewModel::class.java))
     }
 
-    val factory_login = LoginViewModelFactory( Repository())
+    val factory_login = LoginViewModelFactory(Repository())
     private val loginViewModel: LoginViewModel by lazy{
         ViewModelProvider(requireActivity(),factory_login).get((LoginViewModel::class.java))
     }
@@ -102,7 +102,6 @@ class OngoingOrdersFragment : Fragment(), OngoingOrdersDataAdapter.OnItemClickLi
         val alert = dialogBuilder.create()
         alert.setTitle("Secure deletion")
         alert.show()
-
 
     }
 

@@ -3,7 +3,6 @@ package com.example.marketplace.fragments
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +22,6 @@ import com.example.marketplace.viewmodels.products.RemoveProductsViewModel
 import com.example.marketplace.viewmodels.products.RemoveProductsViewModelFactory
 import com.example.marketplace.viewmodels.user.LoginViewModel
 import com.example.marketplace.viewmodels.user.LoginViewModelFactory
-import com.example.marketplace.viewmodels.user.UserDataViewModel
-import com.example.marketplace.viewmodels.user.UserDataViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 

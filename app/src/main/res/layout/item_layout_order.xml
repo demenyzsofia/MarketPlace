@@ -26,15 +26,13 @@
             android:id="@+id/textView_priceAndAmount_order_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="50dp"
             android:layout_marginBottom="10dp"
             android:text="TextView"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_name_order_layout"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView_order_layout" />
 
         <TextView
             android:id="@+id/textView_sellername_order_layout"

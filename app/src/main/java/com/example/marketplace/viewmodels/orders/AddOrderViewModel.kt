@@ -20,7 +20,6 @@ class AddOrderViewModel (val context: Context, val repository: Repository): View
 
     suspend fun addOrder() {
         try {
-            Log.i("itt","hel")
             val request =
                 AddOrderRequest(
                     title = order.value!!.title,

@@ -18,7 +18,9 @@ class OngoingSalesDataAdapter (
     private val listener: OngoingSalesFragment
 ) : RecyclerView.Adapter<OngoingSalesDataAdapter.DataViewHolder>() {
 
-
+    interface OnItemClickListener{
+        fun onDeleteClick(position : Int)
+    }
 
     inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
@@ -28,8 +30,19 @@ class OngoingSalesDataAdapter (
         val textView_name_seller: TextView = itemView.findViewById(R.id.textView_sellername_order_layout)
         val textView_status: TextView = itemView.findViewById(R.id.textView_order_status)
         val textView_delete: TextView = itemView.findViewById(R.id.textView_delete)
-        override fun onClick(p0: View?) {
 
+        init{
+            textView_delete.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            val currentPosition = this.adapterPosition
+
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                if (this.textView_delete.isPressed) {
+                    listener.onDeleteClick(currentPosition)
+                }
+            }
         }
 
     }
@@ -45,7 +58,6 @@ class OngoingSalesDataAdapter (
         holder.textView_priceAndAmount.setText("Amount: "+ currentItem.units + " | Price: " + currentItem.price_per_unit)
         holder.textView_productname.setText(currentItem.title)
         holder.textView_status.setText(currentItem.status)
-        holder.textView_delete.visibility = View.GONE
 
         Glide.with(this.context)
             .load(R.drawable.order)

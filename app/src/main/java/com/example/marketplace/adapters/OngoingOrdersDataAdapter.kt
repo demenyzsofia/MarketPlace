@@ -22,8 +22,6 @@ class OngoingOrdersDataAdapter (
         fun onDeleteClick(position : Int)
     }
 
-
-
     inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         val imageView: ImageView = itemView.findViewById(R.id.imageView_order_layout)

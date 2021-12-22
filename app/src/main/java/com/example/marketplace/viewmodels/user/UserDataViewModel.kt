@@ -5,12 +5,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.marketplace.MyApplication
 import com.example.marketplace.models.OneUser
-import com.example.marketplace.models.Product
-import com.example.marketplace.models.UserDataResponse
 import com.example.marketplace.repository.Repository
-import com.squareup.moshi.ToJson
 import kotlinx.coroutines.launch
 
 

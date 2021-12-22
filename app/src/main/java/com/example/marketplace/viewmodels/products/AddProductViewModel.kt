@@ -5,16 +5,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import com.example.marketplace.MyApplication
-import com.example.marketplace.adapters.DataAdapter
-import com.example.marketplace.fragments.ListFragment
 import com.example.marketplace.models.AddProduct
 import com.example.marketplace.models.AddProductRequest
-import com.example.marketplace.models.Product
 import com.example.marketplace.repository.Repository
-import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class AddProductViewModel (val context: Context, val repository: Repository): ViewModel() {

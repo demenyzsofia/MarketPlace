@@ -15,6 +15,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.marketplace.R
 import com.example.marketplace.repository.Repository
+import com.example.marketplace.viewmodels.user.LoginViewModel
+import com.example.marketplace.viewmodels.user.LoginViewModelFactory
 import com.example.marketplace.viewmodels.user.UserUpdateViewModel
 import com.example.marketplace.viewmodels.user.UserUpdateViewModelFactory
 import kotlinx.coroutines.launch
@@ -28,6 +30,11 @@ class ProfileSettingsFragment : Fragment() {
     private lateinit var phoneNumber : EditText
     private lateinit var emailAddress : EditText
     private lateinit var publishButton : Button
+
+    val factory = LoginViewModelFactory( Repository())
+    private val loginViewModel: LoginViewModel by lazy{
+        ViewModelProvider(requireActivity(),factory).get((LoginViewModel::class.java))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +63,9 @@ class ProfileSettingsFragment : Fragment() {
         phoneNumber = view.findViewById(R.id.editText_settings_phone)
         emailAddress = view.findViewById(R.id.editText_settings_email)
         publishButton = view.findViewById(R.id.button_settings)
+        userName.setText(loginViewModel.user.value?.username.toString())
+        emailAddress.setText(loginViewModel.user.value?.email.toString())
+        phoneNumber.setText(loginViewModel.user.value?.phone_number.toString())
     }
 
     private fun registerListeners(view: View) {
@@ -65,7 +75,6 @@ class ProfileSettingsFragment : Fragment() {
         }
 
         publishButton.setOnClickListener {
-
             profilSettingsViewModel.user.value.let {
                 if (it != null) {
                     it.username = userName.text.toString()
