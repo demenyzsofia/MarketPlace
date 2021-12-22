@@ -37,6 +37,9 @@ interface MarketApi {
     @POST(Constants.REMOVE_PRODUCT_URL)
     suspend fun removeProducts(@Header("token") token: String, @Query("product_id") product_id: String): RemoveProdutsResponse
 
+    @POST(Constants.REMOVE_ORDERS_URL)
+    suspend fun removeOrders(@Header("token") token: String, @Query("order_id") order_id: String): RemoveOrdersResponse
+
     @GET(Constants.GET_PRODUCT_URL)
     suspend fun getProducts(@Header("token") token: String,@Header("limit") limit: Int): ProductResponse
     //get user
@@ -44,7 +47,7 @@ interface MarketApi {
     suspend fun getUserData(@Header("username") username: String): UserDataResponse
 
     @GET(Constants.GET_ORDERS_URL)
-    suspend fun getOrders(@Header("token") token: String): OrdersResponse
+    suspend fun getOrders(@Header("token") token: String, @Header("limit") limit: Int): OrdersResponse
 
 
 

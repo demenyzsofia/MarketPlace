@@ -155,10 +155,18 @@
         android:id="@+id/ongoingOrdersFragment"
         android:name="com.example.marketplace.fragments.OngoingOrdersFragment"
         android:label="fragment_ongoing_orders"
-        tools:layout="@layout/fragment_ongoing_orders" />
+        tools:layout="@layout/fragment_ongoing_orders" >
+        <action
+            android:id="@+id/action_ongoingOrdersFragment_self"
+            app:destination="@id/ongoingOrdersFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ongoingSalesFragment"
         android:name="com.example.marketplace.fragments.OngoingSalesFragment"
         android:label="fragment_ongoing_sales"
-        tools:layout="@layout/fragment_ongoing_sales" />
+        tools:layout="@layout/fragment_ongoing_sales" >
+        <action
+            android:id="@+id/action_ongoingSalesFragment_self"
+            app:destination="@id/ongoingSalesFragment" />
+    </fragment>
 </navigation>

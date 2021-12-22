@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 class OrderViewModel (private val repository: Repository) : ViewModel() {
     var orders: MutableLiveData<List<Order>> = MutableLiveData()
     private lateinit var myOrders: ArrayList<Order>
+    private var currentPosition: Int = 0
 
     init{
         getOrders()
@@ -25,13 +26,22 @@ class OrderViewModel (private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             try {
                 val result =
-                    repository.getOrders(MyApplication.token)
+                    repository.getOrders(MyApplication.token,500)
                 orders.value = result.orders
                 Log.d("xxx", "OrderViewModel - #orders:  ${result.item_count}")
             }catch(e: Exception){
                 Log.d("xxx", "OrderViewModel exception: ${e.toString()}")
             }
         }
+    }
+
+    fun updateCurrentPosition(position : Int): Int {
+        currentPosition = position
+        return currentPosition
+    }
+
+    fun getOrderId():String{
+        return myOrders?.get(currentPosition)?.order_id.toString()
     }
 
 }

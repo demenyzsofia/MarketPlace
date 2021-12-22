@@ -27,6 +27,7 @@ class OngoingSalesDataAdapter (
         val textView_productname: TextView = itemView.findViewById(R.id.textView_name_order_layout)
         val textView_name_seller: TextView = itemView.findViewById(R.id.textView_sellername_order_layout)
         val textView_status: TextView = itemView.findViewById(R.id.textView_order_status)
+        val textView_delete: TextView = itemView.findViewById(R.id.textView_delete)
         override fun onClick(p0: View?) {
 
         }
@@ -44,6 +45,7 @@ class OngoingSalesDataAdapter (
         holder.textView_priceAndAmount.setText("Amount: "+ currentItem.units + " | Price: " + currentItem.price_per_unit)
         holder.textView_productname.setText(currentItem.title)
         holder.textView_status.setText(currentItem.status)
+        holder.textView_delete.visibility = View.GONE
 
         Glide.with(this.context)
             .load(R.drawable.order)

@@ -18,6 +18,10 @@ class OngoingOrdersDataAdapter (
     private val listener: OngoingOrdersFragment
 ) : RecyclerView.Adapter<OngoingOrdersDataAdapter.DataViewHolder>() {
 
+    interface OnItemClickListener{
+        fun onDeleteClick(position : Int)
+    }
+
 
 
     inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
@@ -27,8 +31,20 @@ class OngoingOrdersDataAdapter (
         val textView_productname: TextView = itemView.findViewById(R.id.textView_name_order_layout)
         val textView_name_seller: TextView = itemView.findViewById(R.id.textView_sellername_order_layout)
         val textView_status: TextView = itemView.findViewById(R.id.textView_order_status)
-        override fun onClick(p0: View?) {
+        val textView_delete: TextView = itemView.findViewById(R.id.textView_delete)
 
+        init{
+            textView_delete.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            val currentPosition = this.adapterPosition
+
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                if (this.textView_delete.isPressed) {
+                    listener.onDeleteClick(currentPosition)
+                }
+            }
         }
 
     }

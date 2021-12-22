@@ -51,7 +51,11 @@ class Repository {
         return RetrofitInstance.api.addOrder(token,request)
     }
 
-    suspend fun getOrders( token: String): OrdersResponse{
-        return RetrofitInstance.api.getOrders(token)
+    suspend fun getOrders( token: String, limit : Int): OrdersResponse{
+        return RetrofitInstance.api.getOrders(token, limit)
+    }
+
+    suspend fun removeOrders(token: String, order_id : String) : RemoveOrdersResponse{
+        return RetrofitInstance.api.removeOrders(token,order_id)
     }
 }

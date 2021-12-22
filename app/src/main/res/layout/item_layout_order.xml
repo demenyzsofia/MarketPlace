@@ -26,13 +26,12 @@
             android:id="@+id/textView_priceAndAmount_order_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="10dp"
             android:text="TextView"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.43"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_name_order_layout"
             app:layout_constraintVertical_bias="0.0" />
@@ -75,6 +74,28 @@
             app:layout_constraintHorizontal_bias="0.072"
             app:layout_constraintStart_toEndOf="@+id/imageView_order_layout"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_delete"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/text_view_circle"
+            android:drawableTop="@drawable/trash"
+            android:drawablePadding="@dimen/cardview_compat_inset_shadow"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:textColor="@color/teal_200"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.037"
+            app:layout_constraintStart_toEndOf="@+id/textView_priceAndAmount_order_layout"
+            app:layout_constraintTop_toBottomOf="@+id/textView_name_order_layout"
+            app:layout_constraintVertical_bias="0.733" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

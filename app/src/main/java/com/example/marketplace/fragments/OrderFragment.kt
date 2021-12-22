@@ -67,6 +67,7 @@ class OrderFragment : Fragment() {
             adapter.setData(orderViewModel.orders.value as ArrayList<Order>)
             adapter.notifyDataSetChanged()
         }
+
     }
 
     private fun setupRecyclerView(){

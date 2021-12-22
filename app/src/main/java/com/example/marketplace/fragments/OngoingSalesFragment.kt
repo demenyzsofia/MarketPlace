@@ -56,6 +56,7 @@ class OngoingSalesFragment : Fragment() {
         orderViewModel.orders.observe(viewLifecycleOwner){
             var orders = orderViewModel.orders.value as ArrayList<Order>
             val ord : ArrayList<Order> = orders.filter { order -> order.owner_username == loginViewModel.user.value?.username.toString() } as ArrayList<Order>
+
             orderViewModel.updateMyOrders(ord)
             adapter.setData(ord)
             adapter.notifyDataSetChanged()

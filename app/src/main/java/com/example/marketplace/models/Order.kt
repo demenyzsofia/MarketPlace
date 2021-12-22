@@ -39,3 +39,10 @@ data class AddOrderResponse (
     var creation_time: Long)
 
 
+
+@JsonClass(generateAdapter = true)
+data class RemoveOrdersResponse(
+    var message: String,
+    var order_id: String,
+    var deletion_time: String,
+)
