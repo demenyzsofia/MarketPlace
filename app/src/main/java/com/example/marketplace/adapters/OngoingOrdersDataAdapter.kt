@@ -1,6 +1,7 @@
 package com.example.marketplace.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,10 +55,21 @@ class OngoingOrdersDataAdapter (
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         val currentItem = list[position]
-        holder.textView_name_seller.text = currentItem.owner_username
-        holder.textView_priceAndAmount.setText("Amount: "+ currentItem.units + " | Price: " + currentItem.price_per_unit)
-        holder.textView_productname.setText(currentItem.title)
-        holder.textView_status.setText(currentItem.status)
+
+        if (currentItem.owner_username[0].toString() == "\""){
+            holder.textView_name_seller.text = currentItem.owner_username.substring(1,currentItem.owner_username.length-1)
+            holder.textView_priceAndAmount.setText("Amount: "+ currentItem.units.substring(1,currentItem.units.length-1) +
+                    " | Price: " + currentItem.price_per_unit.substring(1,currentItem.price_per_unit.length-1))
+            holder.textView_productname.setText(currentItem.title.substring(1,currentItem.title.length-1))
+            holder.textView_status.setText(currentItem.status)
+        }
+        else{
+            holder.textView_name_seller.text = currentItem.owner_username
+            holder.textView_priceAndAmount.setText("Amount: "+ currentItem.units + " | Price: " + currentItem.price_per_unit)
+            holder.textView_productname.setText(currentItem.title)
+            holder.textView_status.setText(currentItem.status)
+        }
+
 
         Glide.with(this.context)
             .load(R.drawable.order)

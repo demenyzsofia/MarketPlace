@@ -51,26 +51,39 @@ class MyProductDetailFragment : Fragment() {
 
     private fun registerListeners(view: View) {
         val product: Product? = listViewModel.getOneProductMyList()
-        val price_per_unit = product?.price_per_unit.toString().substring(1,product?.price_per_unit.toString().length-1)
-        val price_type = product?.price_type.toString().substring(1,product?.price_type.toString().length-1)
-        val amount_type = product?.amount_type.toString().substring(1,product?.amount_type.toString().length-1)
-        val title = product?.title.toString().substring(1,product?.title.toString().length-1)
-        val units = product?.units.toString().substring(1,product?.units.toString().length-1)
-        val description = product?.description.toString().substring(1,product?.description.toString().length-1)
-        productDescription.setText(description)
-        productPrice.setText(price_per_unit + " " + price_type + "/" + amount_type)
-        productSeller.setText(product?.username.toString())
-        productName.setText(title)
+        if (product?.title!![0]?.toString()  == "\""){
+            val price_per_unit = product?.price_per_unit.toString().substring(1,product?.price_per_unit.toString().length-1)
+            val price_type = product?.price_type.toString().substring(1,product?.price_type.toString().length-1)
+            val amount_type = product?.amount_type.toString().substring(1,product?.amount_type.toString().length-1)
+            val title = product?.title.toString().substring(1,product?.title.toString().length-1)
+            val units = product?.units.toString().substring(1,product?.units.toString().length-1)
+            val description = product?.description.toString().substring(1,product?.description.toString().length-1)
+            productDescription.setText(description)
+            productPrice.setText(price_per_unit + " " + price_type + "/" + amount_type)
+            productSeller.setText(product?.username.toString())
+            productName.setText(title)
+            totalItems.text = units + " " + amount_type
+            priceItem.text = price_per_unit + " " + price_type
+            selledItems.text = "0" + " " + amount_type
+            revenew.text = "0" + price_type
+        }
+        else {
+            productDescription.setText(product?.description)
+            productPrice.setText(product?.price_per_unit + " " + product?.price_type + "/" + product?.amount_type)
+            productSeller.setText(product?.username)
+            productName.setText(product?.title)
+            totalItems.text = product?.price_per_unit + " " + product?.amount_type
+            priceItem.text = product?.price_per_unit + " " + product?.price_type
+            selledItems.text = "0" + " " + product?.amount_type
+            revenew.text = "0" + product?.price_type
+        }
         if(product?.is_active.toString() == "true"){
             isActive.text = "Active"
         }
         else{
             isActive.text = "Inactive"
         }
-        totalItems.text = units + " " + amount_type
-        priceItem.text = price_per_unit + " " + price_type
-        selledItems.text = "0" + " " + amount_type
-        revenew.text = "0" + price_type
+
 
     }
 

@@ -51,6 +51,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.profileFragment -> topAppBar.setTitle("Profil")
                 R.id.addProductFragment -> topAppBar.setTitle("Create your fare")
                 R.id.orderFragment -> topAppBar.setTitle("My fares")
+                R.id.ongoingOrdersFragment -> topAppBar.setTitle("My fares")
+                R.id.ongoingSalesFragment -> topAppBar.setTitle("My fares")
             }
 
         }
@@ -66,6 +68,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.profileFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
                 R.id.addProductFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
                 R.id.orderFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
+                R.id.ongoingOrdersFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
+                R.id.ongoingSalesFragment -> topAppBar.setNavigationIcon(R.drawable.arrow_icon)
             }
 
         }

@@ -75,30 +75,35 @@ class ProfileSettingsFragment : Fragment() {
         }
 
         publishButton.setOnClickListener {
-            profilSettingsViewModel.user.value.let {
-                if (it != null) {
-                    it.username = userName.text.toString()
-                }
-                if (it != null) {
-                    it.email = emailAddress.text.toString()
-                }
-                if (it != null) {
-                    it.phone_number = phoneNumber.text.toString()
-                }
+            if(userName.text.toString().isEmpty() || emailAddress.text.toString().isEmpty() || phoneNumber.text.toString().isEmpty()){
+                Toast.makeText(context, "Username, email address or phone number missing!", Toast.LENGTH_SHORT).show()
             }
-            lifecycleScope.launch {
-                profilSettingsViewModel.userUpdate()
-            }
-            emailAddress.text = emailAddress.text
-            emailAddress.setEnabled(false)
-            userName.text =  userName.text
-            userName.setEnabled(false)
-            phoneNumber.text = phoneNumber.text
-            phoneNumber.setEnabled(false)
-            publishButton.setText("Go To Shopping!")
-            Toast.makeText(context , "The update was successful!", Toast.LENGTH_SHORT).show()
-            publishButton.setOnClickListener(){
-                findNavController().navigate(R.id.action_profileSettingsFragment_to_listFragment)
+            else{
+                profilSettingsViewModel.user.value.let {
+                    if (it != null) {
+                        it.username = userName.text.toString()
+                    }
+                    if (it != null) {
+                        it.email = emailAddress.text.toString()
+                    }
+                    if (it != null) {
+                        it.phone_number = phoneNumber.text.toString()
+                    }
+                }
+                lifecycleScope.launch {
+                    profilSettingsViewModel.userUpdate()
+                }
+                emailAddress.text = emailAddress.text
+                emailAddress.setEnabled(false)
+                userName.text =  userName.text
+                userName.setEnabled(false)
+                phoneNumber.text = phoneNumber.text
+                phoneNumber.setEnabled(false)
+                publishButton.setText("Go To Shopping!")
+                Toast.makeText(context , "The update was successful!", Toast.LENGTH_SHORT).show()
+                publishButton.setOnClickListener(){
+                    findNavController().navigate(R.id.action_profileSettingsFragment_to_listFragment)
+                }
             }
         }
 

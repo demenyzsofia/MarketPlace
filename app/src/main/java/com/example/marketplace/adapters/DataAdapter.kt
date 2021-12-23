@@ -78,9 +78,24 @@ class DataAdapter(
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         val currentItem = list[position]
-        holder.textView_name_seller.text = currentItem.username
-        holder.textView_price.text = currentItem.price_per_unit
-        holder.textView_productname.text = currentItem.title
+
+        if (currentItem.title[0].toString() == "\"") {
+            holder.textView_name_seller.text = currentItem.username
+            if (currentItem.amount_type.length <= 2){
+                holder.textView_price.setText(currentItem.price_per_unit.substring(1,currentItem.price_per_unit.length-1) + " " +
+                        currentItem.amount_type)
+            }
+            else{
+                holder.textView_price.setText(currentItem.price_per_unit.substring(1,currentItem.price_per_unit.length-1) + " " +
+                        currentItem.amount_type.substring(1,currentItem.amount_type.length-1))
+            }
+            holder.textView_productname.setText(currentItem.title.substring(1,currentItem.title.length-1))
+        }
+        else{
+            holder.textView_name_seller.text = currentItem.username
+            holder.textView_price.setText(currentItem.price_per_unit + " " + currentItem.amount_type)
+            holder.textView_productname.setText(currentItem.title)
+        }
         val images = currentItem.images
         if( images != null && images.size > 0) {
             Log.d("xxx", "#num_images: ${images.size}")
